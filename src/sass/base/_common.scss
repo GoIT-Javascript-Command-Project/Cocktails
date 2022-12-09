@@ -1,0 +1,19 @@
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Poppins', sans-serif;
+// font-family: 'Roboto', sans-serif;
+
+body.light {
+}
+
+body.dark {
+  --background-color: #202025;
+  --primary-text-color: #fcfcfc;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  @include setFont(18, 24);
+  color: var(--primary-text-color);
+
+  background-color: var(--background-color);
+}

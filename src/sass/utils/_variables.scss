@@ -1,0 +1,22 @@
+:root {
+  --black-color: #000;
+  --white-color: #fff;
+  --accent-color: #fd5103;
+  --primary-button-color: #fe7031;
+  --hover-button-color: #f5f5f5;
+  --gray-color: #5f6775;
+
+  --primary-text-color: #202025;
+  --background-color: #fcfcfc;
+}
+
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1280px,
+);
+
+$colors: ();
+
+$animation-function: cubic-bezier(0.4, 0, 0.2, 1);
+$animation-duration: 250ms;

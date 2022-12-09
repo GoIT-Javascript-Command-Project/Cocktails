@@ -9,9 +9,9 @@
 }
 
 .example code {
-  font-family: monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 300;
   background-color: #ff6b0a;
   color: #fff;
   padding: 2px 6px;
@@ -22,7 +22,7 @@
   height: 240px;
   // ❗️❗️❗️ The path to images from a SASS file
   // is always the same as from the css folder.
-  background-image: url('../images/logo.png');
+
   background-size: cover;
   background-position: center;
 }
