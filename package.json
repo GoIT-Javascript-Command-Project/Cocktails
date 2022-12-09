@@ -1,21 +1,21 @@
 {
-  "name": "Cocktail",
+  "name": "Cocktails",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://GoIT-Javascript-Command-Project.github.io/Cocktails",
+  "homepage": "https://goit-javascript-command-project.github.io/cocktails",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /cocktails/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GoIT-Javascript-Command-Project/Cocktails"
+    "url": "git+https://github.com/goit-javascript-command-project/cocktails"
   },
   "keywords": [],
   "author": "Andrii Zaimak <dev.andrii.zaimak@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GoIT-Javascript-Command-Project/Cocktails/issues"
+    "url": "https://github.com/goit-javascript-command-project/cocktails/issues"
   },
   "dependencies": {
     "axios": "^1.2.1",
