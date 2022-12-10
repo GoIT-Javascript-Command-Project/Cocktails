@@ -2,7 +2,7 @@
 .container {
     --padding: 20px;
 
-    max-width: $mobile;
+    max-width: getBreakpoint(mobile);
     padding-left: var(--padding);
     padding-right: var(--padding);
     
@@ -12,12 +12,12 @@
 
 @include breakpoint(tablet) {
     --padding: 32px;
-     max-width: $tablet;
+     max-width: getBreakpoint(tablet);
 }
 
 @include breakpoint(desktop) {
 --padding: 15px;
- max-width: $desktop;
+ max-width: getBreakpoint(desktop);
 }
 
 }
