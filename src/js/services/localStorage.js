@@ -23,7 +23,7 @@ class LocalStorage {
     }
     setFavoriteIngredients(data) {
         const favoriteIngredients = this.getFavoriteIngredients();
-        const ingredients = favoriteCocks.find(cocks => cocks.id === data.id);
+        const ingredients = favoriteIngredients.find(cocks => cocks.id === data.id);
         if (ingredients) {
             return Notify.failure('This ingredient is already in favorite');
         }
