@@ -6,56 +6,46 @@
  * favoriteIngredientsMarkup.map(......)
  * example!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+const THEME_KEY = 'theme';
+const FAVORITE_COCKTAILS = 'favoriteCocktails';
+const FAVORITE_INGREDIENTS = 'favoriteIngredients';
 class LocalStorage {
-    data = [];
-    STORAGE_KEY = ''
     getTheme() {
-        this.STORAGE_KEY = "theme";
-        return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+        return localStorage.getItem(THEME_KEY) || '';
     }
-    setTheme(string) {
-        const thems = [];
-        this.STORAGE_KEY = "theme";
-        thems.push(string);
-        const stringifiedData = JSON.stringify(thems.join(""));
-        localStorage.setItem(this.STORAGE_KEY, stringifiedData);
+    setTheme(theme) {
+        localStorage.setItem(THEME_KEY, theme);
     }
     getFavoriteIngredients() {
-        this.STORAGE_KEY = "favoriteIngredients";
-        return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+        return JSON.parse(localStorage.getItem(FAVORITE_INGREDIENTS)) || [];
 
     }
     setFavoriteIngredients(data) {
-        const ingredients = [];
-        this.STORAGE_KEY = "favoriteIngredients"
-        for (let i = 0; i < Object.values(data).length; i++) {
-            if (ingredients.indexOf(Object.values(data)[i]) === -1) {
-                ingredients.push(...Object.values(data)[i]);
-            }
+        const favoriteIngredients = this.getFavoriteIngredients();
+        const ingredients = favoriteCocks.find(cocks => cocks.id === data.id);
+        if (ingredients) {
+            return Notify.failure('This ingredient is already in favorite');
         }
-
-        const stringifiedData = JSON.stringify(ingredients);
-        localStorage.setItem(this.STORAGE_KEY, stringifiedData);
+        favoriteIngredients.push(data);
+        const stringifiedData = JSON.stringify(favoriteIngredients);
+        localStorage.setItem(FAVORITE_INGREDIENTS, stringifiedData);
     }
 
     getFavoriteCocktails() {
-        this.STORAGE_KEY = "favoriteCocks";
-        return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
+        return JSON.parse(localStorage.getItem(FAVORITE_COCKTAILS)) || [];
     }
 
     setFavoriteCocktails(data) {
-        const cocks = [];
-        this.STORAGE_KEY = "favoriteCocks";
-        for (let i = 0; i < Object.values(data).length; i++) {
-            if (cocks.indexOf(Object.values(data)[i]) === -1) {
-                cocks.push(...Object.values(data)[i]);
-            }
+        const favoriteCocks = this.getFavoriteCocktails();
+        const cocks = favoriteCocks.find(cocks => cocks.id === data.id);
+        if (cocks) {
+            return Notify.failure('This cocktail is already in favorite');
         }
-
-        const stringifiedData = JSON.stringify(cocks);
-        localStorage.setItem(this.STORAGE_KEY, stringifiedData);
+        favoriteCocks.push(data);
+        const stringifiedData = JSON.stringify(favoriteCocks);
+        localStorage.setItem(FAVORITE_COCKTAILS, stringifiedData);
     }
-
 
 }
 export default LocalStorage;
