@@ -19,14 +19,15 @@ class LocalStorage {
         return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
 
     }
-    setFavouriteIngredients(formData) {
+    setFavouriteIngredients(data) {
         const ingredients = [];
         this.STORAGE_KEY = "favoriteIngredients"
-        Object.keys(formData).forEach(item => {
-            if (!this.data.includes(item)) {
-                ingredients.push(...formData[item]);
+        for (let i = 0; i < Object.values(data).length; i++) {
+            if (ingredients.indexOf(Object.values(data)[i]) === -1) {
+                ingredients.push(...Object.values(data)[i]);
             }
-        })
+        }
+
         const stringifiedData = JSON.stringify(ingredients);
         localStorage.setItem(this.STORAGE_KEY, stringifiedData);
     }
@@ -36,21 +37,19 @@ class LocalStorage {
         return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
     }
 
-    setFavouriteCocktails(formData) {
-        this.STORAGE_KEY = "favoriteCocks";
+    setFavouriteCocktails(data) {
         const cocks = [];
-        // const dada = cocks.concat(formData)
-        // console.log(dada);
-
-        Object.keys(formData).forEach(item => {
-            if (!this.data.includes(item)) {
-                cocks.push(...formData[item]);
+        this.STORAGE_KEY = "favoriteCocks";
+        for (let i = 0; i < Object.values(data).length; i++) {
+            if (cocks.indexOf(Object.values(data)[i]) === -1) {
+                cocks.push(...Object.values(data)[i]);
             }
-        })
+        }
 
         const stringifiedData = JSON.stringify(cocks);
         localStorage.setItem(this.STORAGE_KEY, stringifiedData);
     }
+
 
 }
 export default LocalStorage;
