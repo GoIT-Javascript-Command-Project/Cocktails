@@ -1,3 +1,9 @@
+/**
+ * example!
+ * let example = new LocalStorage;
+ * example.getFavoriteIngredients();
+ * example.setFavoriteCocktails(data);
+ */
 class LocalStorage {
     data = [];
     STORAGE_KEY = ''
@@ -19,7 +25,7 @@ class LocalStorage {
         return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
 
     }
-    setFavouriteIngredients(data) {
+    setFavoriteIngredients(data) {
         const ingredients = [];
         this.STORAGE_KEY = "favoriteIngredients"
         for (let i = 0; i < Object.values(data).length; i++) {
@@ -37,7 +43,7 @@ class LocalStorage {
         return this.data = JSON.parse(localStorage.getItem(this.STORAGE_KEY)) || [];
     }
 
-    setFavouriteCocktails(data) {
+    setFavoriteCocktails(data) {
         const cocks = [];
         this.STORAGE_KEY = "favoriteCocks";
         for (let i = 0; i < Object.values(data).length; i++) {
