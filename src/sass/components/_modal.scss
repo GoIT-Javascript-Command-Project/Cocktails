@@ -1,10 +1,25 @@
 .modal {
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
 
   background-color: rgba(black, 0.4);
 
   &--hidden {
     @include visibilityHidden();
+  }
+  opacity: 1;
+  @include setTransition(opacity);
+
+  &--is-hidden {
+    pointer-events: none;
+
+    opacity: 0;
+
+    & > .modal {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
   }
 }
