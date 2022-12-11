@@ -1,8 +1,10 @@
 /**
- * example!
- * let example = new LocalStorage;
- * example.getFavoriteIngredients();
- * example.setFavoriteCocktails(data);
+ * example!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * const example = new LocalStorage;
+ * example.setFavoriteIngredients(yourData);
+ * const favoriteIngredientsMarkup = example.getFavoriteIngredients();
+ * favoriteIngredientsMarkup.map(......)
+ * example!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 class LocalStorage {
     data = [];
