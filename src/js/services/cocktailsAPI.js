@@ -27,31 +27,17 @@ export default class CocktailsAPI {
   }
 
   #convertCocktailData(response) {
-    if (response.data.drinks.length === 1) {
+    return response.data.drinks.map(cocktail => {
       const cocktailData = {
-        id: response.data.drinks[0].idDrink,
-        image: response.data.drinks[0].strDrinkThumb,
-        name: response.data.drinks[0].strDrink,
-        ingredients: this.#getIngredients(response.data.drinks[0]),
-        misure: this.#getMisures(response.data.drinks[0]),
-        instructions: response.data.drinks[0].strInstructions,
+        id: cocktail.idDrink,
+        image: cocktail.strDrinkThumb,
+        name: cocktail.strDrink,
+        ingredients: this.#getIngredients(cocktail),
+        misure: this.#getMisures(cocktail),
+        instructions: cocktail.strInstructions,
       };
-
       return cocktailData;
-    }
-    if (response.data.drinks.length > 1) {
-      return response.data.drinks.map(cocktail => {
-        const cocktailData = {
-          id: cocktail.idDrink,
-          image: cocktail.strDrinkThumb,
-          name: cocktail.strDrink,
-          ingredients: this.#getIngredients(cocktail),
-          misure: this.#getMisures(cocktail),
-          instructions: cocktail.strInstructions,
-        };
-        return cocktailData;
-      });
-    }
+    });
   }
 
   #convertIngredientData(response) {
@@ -60,6 +46,7 @@ export default class CocktailsAPI {
       name: response.data.ingredients[0].strIngredient,
       type: response.data.ingredients[0].strType,
       isAlcohol: response.data.ingredients[0].strAlcohol,
+      ABV: response.data.ingredients[0].strABV,
       description: response.data.ingredients[0].strDescription,
     };
     return ingredientData;
@@ -68,7 +55,7 @@ export default class CocktailsAPI {
   async getOneRandomCocktail() {
     try {
       const response = await instance.get(`random.php`);
-      return this.#convertCocktailData(response);
+      return this.#convertCocktailData(response)[0];
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
     }
@@ -94,11 +81,12 @@ export default class CocktailsAPI {
   /**
    *
    * @param {string} letter is required
-   * @returns array of objects
+   * @returns array of objects | []
    */
-  async getCocktailDataByFirstLetter(letter) {
+  async getCocktailsByFirstLetter(letter) {
     try {
       const response = await instance.get(`search.php?f=${letter}`);
+      if (!response.data.drinks) return [];
       return this.#convertCocktailData(response);
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
@@ -107,11 +95,12 @@ export default class CocktailsAPI {
   /**
    *
    * @param {string} name is required
-   * @returns object
+   * @returns array of objects | []
    */
-  async getCocktailDataByName(name) {
+  async getCocktailsByName(name) {
     try {
       const response = await instance.get(`search.php?s=${name}`);
+      if (!response.data.drinks) return [];
       return this.#convertCocktailData(response);
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
@@ -120,12 +109,13 @@ export default class CocktailsAPI {
   /**
    *
    * @param {string} id is required
-   * @returns object
+   * @returns object | undefined
    */
-  async getCocktailDataById(id) {
+  async getCocktailInfoById(id) {
     try {
       const response = await instance.get(`lookup.php?i=${id}`);
-      return this.#convertCocktailData(response);
+      if (!response.data.drinks) return;
+      return this.#convertCocktailData(response)[0];
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
     }
@@ -133,11 +123,12 @@ export default class CocktailsAPI {
   /**
    *
    * @param {string} ingredient is required
-   * @returns object
+   * @returns object | undefined
    */
-  async getIngredientData(ingredient) {
+  async getIngredientInfo(ingredient) {
     try {
       const response = await instance.get(`search.php?i=${ingredient}`);
+      if (!response.data.ingredients) return;
       return this.#convertIngredientData(response);
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
