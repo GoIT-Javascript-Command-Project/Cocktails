@@ -16,9 +16,7 @@ class LocalStorage {
     setTheme(string) {
         const thems = [];
         this.STORAGE_KEY = "theme";
-        if (!this.data.includes(string)) {
-            thems.push(string);
-        }
+        thems.push(string);
         const stringifiedData = JSON.stringify(thems.join(""));
         localStorage.setItem(this.STORAGE_KEY, stringifiedData);
     }
