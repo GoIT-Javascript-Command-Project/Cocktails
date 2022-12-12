@@ -1,101 +1,89 @@
-/**
- * example!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * const example = new LocalStorage;
- * example.setFavoriteIngredients(yourData);
- * const favoriteIngredientsMarkup = example.getFavoriteIngredients();
- * favoriteIngredientsMarkup.map(......)
- * example!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- */
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix';
+
 const THEME_KEY = 'theme';
 const FAVORITE_COCKTAILS = 'favoriteCocktails';
 const FAVORITE_INGREDIENTS = 'favoriteIngredients';
+
 class LocalStorage {
-    getTheme() {
-        return localStorage.getItem(THEME_KEY) || '';
-    }
-    setTheme(theme) {
-        localStorage.setItem(THEME_KEY, theme);
-    }
-    getFavoriteIngredients() {
-        return JSON.parse(localStorage.getItem(FAVORITE_INGREDIENTS)) || [];
+  static #getFavorite(key) {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  }
 
-    }
-    setFavoriteIngredients(data) {
-        const favoriteIngredients = this.getFavoriteIngredients();
-        const ingredients = favoriteIngredients.find(ingredients => ingredients.id === data.id);
-        if (Array.isArray(data) && !this.hasIngredientsInFavorite(ingredients)) {
-            favoriteIngredients.push(data);
-            const stringifiedData = JSON.stringify(...favoriteIngredients);
-            localStorage.setItem(FAVORITE_INGREDIENTS, stringifiedData);
-        } else
-            if (!ingredients) {
-                favoriteIngredients.push(data);
-                const stringifiedData = JSON.stringify(favoriteIngredients);
-                localStorage.setItem(FAVORITE_INGREDIENTS, stringifiedData);
-            }
+  static #setToFavorite(key, data) {
+    let result = [];
 
+    if (Array.isArray(data)) {
+      result = [...data];
+    } else {
+      result = LocalStorage.#getFavorite(key);
+      const findData = result.find(item => item.id === data.id);
+
+      if (findData) {
+        console.log(data);
+        Notify.warning(`${data?.name} already in favorite!`);
+        return;
+      }
+      result.push(data);
     }
 
-    getFavoriteCocktails() {
-        return JSON.parse(localStorage.getItem(FAVORITE_COCKTAILS)) || [];
-    }
+    localStorage.setItem(key, JSON.stringify(result));
+  }
 
-    setFavoriteCocktails(data) {
-        const favoriteCocks = this.getFavoriteCocktails();
-        const cocks = favoriteCocks.find(cocks => cocks.id === data.id);
-        if (Array.isArray(data) && !this.hasCocktailsInFavorite(cocks)) {
-            favoriteCocks.push(data);
-            const stringifiedData = JSON.stringify(...favoriteCocks);
-            localStorage.setItem(FAVORITE_COCKTAILS, stringifiedData);
-        } else
-            if (!cocks) {
-                favoriteCocks.push(data);
-                const stringifiedData = JSON.stringify(favoriteCocks);
-                localStorage.setItem(FAVORITE_COCKTAILS, stringifiedData);
-            }
+  static #removeFromFavorite(key, id) {
+    const newFavorites = LocalStorage.#getFavorite(key).filter(
+      item => item.id !== id
+    );
 
-    }
-    removeFavoriteCocktails(id) {
-        const favoriteCocks = this.getFavoriteCocktails();
-        const index = favoriteCocks.findIndex(n => n.id === id);
+    LocalStorage.#setToFavorite(key, newFavorites);
 
-        if (index !== -1) {
-            favoriteCocks.splice(index, 1);
-            localStorage.removeItem(FAVORITE_COCKTAILS);
-            this.setFavoriteCocktails(favoriteCocks);
-        }
+    return newFavorites;
+  }
 
-    }
-    removeFavoriteIngredients(id) {
-        const favoriteIngredients = this.getFavoriteIngredients();
-        const index = favoriteIngredients.findIndex(n => n.id === id);
+  static #hasInFavorite(key, id) {
+    return (
+      LocalStorage.#getFavorite(key).find(item => item.id === id) !== undefined
+    );
+  }
 
-        if (index !== -1) {
-            favoriteIngredients.splice(index, 1);
-            localStorage.removeItem(FAVORITE_INGREDIENTS);
-            this.setFavoriteIngredients(favoriteIngredients);
-        }
+  static getTheme() {
+    return localStorage.getItem(THEME_KEY) || '';
+  }
 
-    }
-    hasCocktailsInFavorite(id) {
-        const favoriteCocks = this.getFavoriteCocktails();
-        const hasIdCock = favoriteCocks.find(item => item.id === id);
-        if (hasIdCock) {
-            true;
-        } else {
-            false;
-        }
-    }
-    hasIngredientsInFavorite(id) {
-        const favoriteIngredients = this.getFavoriteCocktails();
-        const hasIdIngredient = favoriteIngredients.find(item => item.id === id);
-        if (hasIdIngredient) {
-            true;
-        } else {
-            false;
-        }
-    }
+  static setTheme(theme) {
+    localStorage.setItem(THEME_KEY, theme);
+  }
+
+  static getFavoriteIngredients() {
+    return LocalStorage.#getFavorite(FAVORITE_INGREDIENTS);
+  }
+
+  static setFavoriteIngredients(data) {
+    LocalStorage.#setToFavorite(FAVORITE_INGREDIENTS, data);
+  }
+
+  static removeFavoriteIngredient(id) {
+    return LocalStorage.#removeFromFavorite(FAVORITE_INGREDIENTS, id);
+  }
+
+  static hasFavoriteIngredient(id) {
+    return LocalStorage.#hasInFavorite(FAVORITE_INGREDIENTS, id);
+  }
+
+  static getFavoriteCocktails() {
+    return LocalStorage.#getFavorite(FAVORITE_COCKTAILS);
+  }
+
+  static setFavoriteCocktails(data) {
+    LocalStorage.#setToFavorite(FAVORITE_COCKTAILS, data);
+  }
+
+  static removeFavoriteCocktail(id) {
+    return LocalStorage.#removeFromFavorite(FAVORITE_COCKTAILS, id);
+  }
+
+  static hasFavoriteCocktail(id) {
+    return LocalStorage.#hasInFavorite(FAVORITE_COCKTAILS, id);
+  }
 }
 
 export default LocalStorage;
