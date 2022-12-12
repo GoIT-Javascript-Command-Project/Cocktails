@@ -9,7 +9,6 @@
     @include setTransition(background-color, color);
 
     @include breakpoint(tablet) {
-
         @include setFont(20, 24);
     }
 

@@ -1,0 +1,168 @@
+.modal-container {
+
+    @include breakpoint(tablet) {
+        padding: 10px;
+        width: 822px;
+        outline: 2px solid tomato;
+    }
+}
+
+.cocktail-details-block {
+    width: 100%;
+    height: 100%;
+}
+
+.cocktail-details-block__top-part-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(tablet) {
+        flex-direction: row;
+        margin-bottom: 28px;
+    }
+}
+
+.cocktail-details-block__image-wrapper {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        width: 288px;
+    }
+}
+
+.cocktail-details-block__image {
+
+    @include breakpoint(tablet) {
+        min-height: 320px;
+    }
+}
+
+.cocktail-details-block__inner-wrapper {
+
+
+    @include breakpoint(tablet) {
+        padding-top: 40px;
+        padding-left: 32px;
+    }
+}
+
+.cocktail-details-block__title {
+    font-family: 'Roboto';
+    @include setFont(32, 38);
+    font-weight: 900;
+    margin-bottom: 20px;
+
+    color: var(--primary-text-color);
+
+    color: #202025;
+
+    @include breakpoint(tablet) {
+        margin-bottom: 28px;
+        color: #000917;
+    }
+}
+
+.cocktail-details-block__subtitle {
+    font-weight: 600;
+    @include setFont(16, 24);
+    color: #000917;
+    margin-bottom: 8px;
+}
+
+.cocktail-details-block__note-text {
+    font-weight: 300;
+    @include setFont(14, 21);
+    color: var(--primary-text-color);
+    margin-bottom: 8px;
+
+}
+
+.cocktail-details-block__ingredient-list {
+    @include breakpoint(tablet) {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.cocktail-details-block__ingredient-item {
+    @include setFont(16, 26);
+    color: var(--gray-color);
+
+    &::before {
+        display: inline-block;
+        margin-right: 5px;
+        content: '✶';
+        color: #000917;
+    }
+}
+
+.cocktail-details-block__bottom-subtitle {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        margin: 0 0 24 0;
+        font-weight: 600;
+        @include setFont(16, 26);
+        text-transform: uppercase;
+        color: #000917;
+    }
+}
+
+.cocktail-details-block__instruction-text {
+    display: none;
+
+
+    @include breakpoint(tablet) {
+        display: block;
+        margin-bottom: 40px;
+
+        max-width: 615px;
+        @include setFont(16, 28);
+        color: var(--gray-color);
+    }
+}
+
+.cocktail-details-block .cocktail-details-block__add-to-fav-button {
+    display: block;
+    margin-top: 22px;
+    padding: 12px 24px;
+    @include setFont(20, 24);
+
+    @include breakpoint(tablet) {
+        margin-left: auto;
+    }
+}
+
+.cocktail-details-block__bottom-subtitle-mobile {
+    margin: 0 0 20px 0;
+
+    font-weight: 600;
+    @include setFont(16, 26);
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.cocktail-details-block__instruction-text-mobile {
+    margin-bottom: 32px;
+    @include setFont(16, 28);
+    color: var(--gray-color);
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.cocktail-details-block__image-wrapper-mobile {
+    margin-bottom: 22px;
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
