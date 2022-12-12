@@ -1,13 +1,14 @@
 import CocktailDetailsContent from './js/modal/CocktailDetailsContent';
+import CocktailAPI from './js/services/cocktailsAPI';
 import Modal from './js/modal/Modal';
 
 document.querySelector('.test').addEventListener('click', () => {
-  const f = new Coc();
+  const f = new CocktailAPI();
 
-  const m1 = new CocktailDetailsContent({
-    id: '1',
-    ingredients: ['Tequila', 'Triple sec', 'Lime juice', 'Salt'],
+  f.getOneRandomCocktail().then(data => {
+    console.log(data);
+    const m1 = new CocktailDetailsContent(data);
+
+    Modal.show(m1.getContentRef());
   });
-
-  Modal.show(m1.getContentRef());
 });

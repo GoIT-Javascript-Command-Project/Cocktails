@@ -12,12 +12,17 @@ export default class CocktailDetailsContent extends ModalContent {
 
     const template = document.createElement('div');
     template.innerHTML = cocktailContent(this.data);
-    this.contentRef.append(template.firstChild);
+
+    console.log(template.firstChild);
+    this.contentRef.append(template);
     this._addEventListener();
   }
 
   _addEventListener() {
-    const ref = this.contentRef.querySelector('.ingredients');
+    console.log(this.contentRef);
+    const ref = this.contentRef.querySelector(
+      '.cocktail-details-block__ingredient-list'
+    );
 
     ref.addEventListener('click', evt => {
       evt.preventDefault();
