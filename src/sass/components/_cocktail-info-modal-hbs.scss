@@ -7,12 +7,12 @@
     }
 }
 
-.cocktail-details-block {
+.details {
     width: 100%;
     height: 100%;
 }
 
-.cocktail-details-block__top-part-wrapper {
+.details__top-part-wrapper {
     display: flex;
     flex-direction: column;
 
@@ -22,7 +22,7 @@
     }
 }
 
-.cocktail-details-block__image-wrapper {
+.details__image-wrapper {
     display: none;
 
     @include breakpoint(tablet) {
@@ -31,14 +31,14 @@
     }
 }
 
-.cocktail-details-block__image {
+.details__image {
 
     @include breakpoint(tablet) {
         min-height: 320px;
     }
 }
 
-.cocktail-details-block__inner-wrapper {
+.details__inner-wrapper {
 
 
     @include breakpoint(tablet) {
@@ -47,7 +47,7 @@
     }
 }
 
-.cocktail-details-block__title {
+.details__title {
     font-family: 'Roboto';
     @include setFont(32, 38);
     font-weight: 900;
@@ -63,14 +63,14 @@
     }
 }
 
-.cocktail-details-block__subtitle {
+.details__subtitle {
     font-weight: 600;
     @include setFont(16, 24);
     color: #000917;
     margin-bottom: 8px;
 }
 
-.cocktail-details-block__note-text {
+.details__note-text {
     font-weight: 300;
     @include setFont(14, 21);
     color: var(--primary-text-color);
@@ -78,7 +78,7 @@
 
 }
 
-.cocktail-details-block__ingredient-list {
+.details__ingredient-list {
     @include breakpoint(tablet) {
         display: flex;
         flex-direction: column;
@@ -86,7 +86,7 @@
 
 }
 
-.cocktail-details-block__ingredient-item {
+.details__ingredient-item {
     @include setFont(16, 26);
     color: var(--gray-color);
 
@@ -98,7 +98,7 @@
     }
 }
 
-.cocktail-details-block__bottom-subtitle {
+.details__bottom-subtitle {
     display: none;
 
     @include breakpoint(tablet) {
@@ -111,7 +111,7 @@
     }
 }
 
-.cocktail-details-block__instruction-text {
+.details__instruction-text {
     display: none;
 
 
@@ -125,7 +125,7 @@
     }
 }
 
-.cocktail-details-block .cocktail-details-block__add-to-fav-button {
+.details .details__add-to-fav-button {
     display: block;
     margin-top: 22px;
     padding: 12px 24px;
@@ -136,7 +136,7 @@
     }
 }
 
-.cocktail-details-block__bottom-subtitle-mobile {
+.details__bottom-subtitle-mobile {
     margin: 0 0 20px 0;
 
     font-weight: 600;
@@ -149,7 +149,7 @@
     }
 }
 
-.cocktail-details-block__instruction-text-mobile {
+.details__instruction-text-mobile {
     margin-bottom: 32px;
     @include setFont(16, 28);
     color: var(--gray-color);
@@ -159,7 +159,7 @@
     }
 }
 
-.cocktail-details-block__image-wrapper-mobile {
+.details__image-wrapper-mobile {
     margin-bottom: 22px;
 
     @include breakpoint(tablet) {
@@ -175,12 +175,12 @@
     }
 }
 
-.cocktail-details-block {
+.details {
     width: 100%;
     height: 100%;
 }
 
-.cocktail-details-block__top-part-wrapper {
+.details__top-part-wrapper {
     display: flex;
     flex-direction: column;
 
@@ -190,7 +190,7 @@
     }
 }
 
-.cocktail-details-block__image-wrapper {
+.details__image-wrapper {
     display: none;
 
     @include breakpoint(tablet) {
@@ -199,20 +199,20 @@
     }
 }
 
-.cocktail-details-block__image {
+.details__image {
     @include breakpoint(tablet) {
         min-height: 320px;
     }
 }
 
-.cocktail-details-block__inner-wrapper {
+.details__inner-wrapper {
     @include breakpoint(tablet) {
         padding-top: 40px;
         padding-left: 32px;
     }
 }
 
-.cocktail-details-block__title {
+.details__title {
     font-family: 'Roboto';
     @include setFont(32, 38);
     font-weight: 900;
@@ -228,28 +228,28 @@
     }
 }
 
-.cocktail-details-block__subtitle {
+.details__subtitle {
     font-weight: 600;
     @include setFont(16, 24);
     color: #000917;
     margin-bottom: 8px;
 }
 
-.cocktail-details-block__note-text {
+.details__note-text {
     font-weight: 300;
     @include setFont(14, 21);
     color: var(--primary-text-color);
     margin-bottom: 8px;
 }
 
-.cocktail-details-block__ingredient-list {
+.details__ingredient-list {
     @include breakpoint(tablet) {
         display: flex;
         flex-direction: column;
     }
 }
 
-.cocktail-details-block__ingredient-item {
+.details__ingredient-item {
     @include setFont(16, 26);
     color: var(--gray-color);
 
@@ -261,7 +261,7 @@
     }
 }
 
-.cocktail-details-block__bottom-subtitle {
+.details__bottom-subtitle {
     display: none;
 
     @include breakpoint(tablet) {
@@ -274,7 +274,7 @@
     }
 }
 
-.cocktail-details-block__instruction-text {
+.details__instruction-text {
     display: none;
 
     @include breakpoint(tablet) {
@@ -287,7 +287,7 @@
     }
 }
 
-.cocktail-details-block .cocktail-details-block__add-to-fav-button {
+.details .details__add-to-fav-button {
     display: block;
     margin-top: 22px;
     padding: 12px 24px;
@@ -298,7 +298,7 @@
     }
 }
 
-.cocktail-details-block__bottom-subtitle-mobile {
+.details__bottom-subtitle-mobile {
     margin: 0 0 20px 0;
 
     font-weight: 600;
@@ -311,7 +311,7 @@
     }
 }
 
-.cocktail-details-block__instruction-text-mobile {
+.details__instruction-text-mobile {
     margin-bottom: 32px;
     @include setFont(16, 28);
     color: var(--gray-color);
@@ -321,7 +321,7 @@
     }
 }
 
-.cocktail-details-block__image-wrapper-mobile {
+.details__image-wrapper-mobile {
     margin-bottom: 22px;
 
     @include breakpoint(tablet) {
