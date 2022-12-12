@@ -1,7 +1,11 @@
-import { Modal } from './js/modal';
+import CocktailDetailsContent from './js/modal/CocktailDetailsContent';
+import Modal from './js/modal/Modal';
 
-const modal = new Modal();
+document.querySelector('.test').addEventListener('click', () => {
+  const m1 = new CocktailDetailsContent({
+    id: '1',
+    ingredients: ['Tequila', 'Triple sec', 'Lime juice', 'Salt'],
+  });
 
-modal.show('d');
-
-modal.closeAll();
+  Modal.show(m1.getContentRef());
+});

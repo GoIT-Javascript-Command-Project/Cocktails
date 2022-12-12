@@ -6,20 +6,58 @@
   top: 0;
 
   background-color: rgba(black, 0.4);
-
-  &--hidden {
-    @include visibilityHidden();
-  }
   opacity: 1;
+
   @include setTransition(opacity);
 
-  &--is-hidden {
+  &--none {
+    display: none;
+  }
+
+  &--hidden {
     pointer-events: none;
 
     opacity: 0;
 
-    & > .modal {
-      transform: translate(-50%, -50%) scale(1.1);
+    & .modal__content {
+      //transform: translate(-50%, -50%) scale(1.1);
     }
   }
+}
+
+.modal__content {
+  --padding-x: 20px;
+  --padding-y: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  padding: var(--padding-y) var(--padding-x);
+
+  background-color: #fff;
+
+  transform: translate(-50%, -50%) scale(0.7);
+  @include setTransition(transform);
+
+  &--show {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &--waiting {
+    transform: translate(-1000%, -50%) scale(0.5);
+  }
+
+  @include breakpoint(tablet) {
+    --padding-x: 28px;
+    padding-bottom: var(--padding-x);
+  }
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
 }
