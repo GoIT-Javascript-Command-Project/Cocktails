@@ -16,7 +16,7 @@ export default class ModalContent {
 
     content.innerHTML = modalContent({
       closeIcon: `${svg}#close-icon`,
-    });
+    }).trim();
     this.contentRef = content.firstChild;
 
     this.#addListeners();
