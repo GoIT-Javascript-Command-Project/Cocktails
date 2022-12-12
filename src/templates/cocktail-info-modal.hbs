@@ -1,62 +1,48 @@
 {{! <div class='cocktail-details-block'>
-  <div class='cocktail-details-block__top-part-wrapper'>
-    <img class='cocktail-details-block__image' src='' alt='' />
-    <div class='cocktail-details-block__inner-wrapper'>
-      <h1 class='cocktail-details-block__title'></h1>
-      <h2 class='cocktail-details-block__subtitle'>INGREDIENTS</h2>
-      <p class='cocktail-details-block__note-text'>Per cocktail</p>
-      <ul class='cocktail-details-block__ingredient-list'><li
-          class='cocktail-details-block__ingredient-item'
-        >
+    <div class='cocktail-details-block__top-part-wrapper'>
+        <img class='cocktail-details-block__image' src='' alt='' />
+        <div class='cocktail-details-block__inner-wrapper'>
+            <h1 class='cocktail-details-block__title'></h1>
+            <h2 class='cocktail-details-block__subtitle'>INGREDIENTS</h2>
+            <p class='cocktail-details-block__note-text'>Per cocktail</p>
+            <ul class='cocktail-details-block__ingredient-list'>
+                <li class='cocktail-details-block__ingredient-item'>
 
-        </li></ul>
+                </li>
+            </ul>
+        </div>
+        <div class='cocktail-details-block__bottom-part-wrapper'>
+            <h4 class='cocktail-details-block__bottom-subtitle'>Instractions:</h4>
+            <p class='cocktail-details-block__note-text'></p>
+        </div>
+        <button class='cocktail-details-block__add-to-fav-button'></button>
     </div>
-    <div class='cocktail-details-block__bottom-part-wrapper'>
-      <h4 class='cocktail-details-block__bottom-subtitle'>Instractions:</h4>
-      <p class='cocktail-details-block__note-text'></p>
-    </div>
-    <button class='cocktail-details-block__add-to-fav-button'></button>
-  </div>
 </div> }}
 
 <div class='cocktail-details-block'>
-  <div class='cocktail-details-block__top-part-wrapper'>
-    <div class='cocktail-details-block__image-wrapper'>
-      <img
-        class='cocktail-details-block__image'
-        src='{{image}}'
-        alt='{{name}} cocktail image'
-      />
+    <div class='cocktail-details-block__top-part-wrapper'>
+        <div class='cocktail-details-block__image-wrapper'>
+            <img class='cocktail-details-block__image' src='{{image}}' alt='{{name}} cocktail image' />
+        </div>
+        <div class='cocktail-details-block__inner-wrapper'>
+            <h1 class='cocktail-details-block__title'>{{name}}</h1>
+            <h4 class='cocktail-details-block__bottom-subtitle-mobile'>Instractions:</h4>
+            <p class='cocktail-details-block__instruction-text-mobile'>{{instructions}}</p>
+            <div class='cocktail-details-block__image-wrapper-mobile'>
+                <img class='cocktail-details-block__image' src='{{image}}' alt='{{name}} cocktail image' />
+            </div>
+            <h2 class='cocktail-details-block__subtitle'>INGREDIENTS</h2>
+            <p class='cocktail-details-block__note-text'>Per cocktail</p>
+            <ul class='cocktail-details-block__ingredient-list'>
+                {{#each ingredients}}
+                <li class='cocktail-details-block__ingredient-item'>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
-    <div class='cocktail-details-block__inner-wrapper'>
-      <h1 class='cocktail-details-block__title'>{{name}}</h1>
-      <h4
-        class='cocktail-details-block__bottom-subtitle-mobile'
-      >Instractions:</h4>
-      <p
-        class='cocktail-details-block__instruction-text-mobile'
-      >{{instructions}}</p>
-      <div class='cocktail-details-block__image-wrapper-mobile'>
-        <img
-          class='cocktail-details-block__image'
-          src='{{image}}'
-          alt='{{name}} cocktail image'
-        />
-      </div>
-      <h2 class='cocktail-details-block__subtitle'>INGREDIENTS</h2>
-      <p class='cocktail-details-block__note-text'>Per cocktail</p>
-      <ul class='cocktail-details-block__ingredient-list'>
-        {{#each ingredients}}
-          <li class='cocktail-details-block__ingredient-item'>{{this}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-  <h4 class='cocktail-details-block__bottom-subtitle'>Instractions:</h4>
-  <p class='cocktail-details-block__instruction-text'>{{instructions}}</p>
+    <h4 class='cocktail-details-block__bottom-subtitle'>Instractions:</h4>
+    <p class='cocktail-details-block__instruction-text'>{{instructions}}</p>
 
-  <button
-    type='button'
-    class='button button--primary cocktail-details-block__add-to-fav-button'
-  >Add to favorite</button>
+    <button type='button' class='button button--primary cocktail-details-block__add-to-fav-button'>Add to
+        favorite</button>
 </div>

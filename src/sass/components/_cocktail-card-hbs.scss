@@ -41,6 +41,8 @@
 
 .cocktail-card__title {
     margin-bottom: 16px;
+    padding: 0 28px;
+    overflow: hidden;
 
     font-family: 'Roboto';
     font-style: normal;
@@ -49,6 +51,7 @@
     text-align: center;
 
     @include breakpoint(tablet) {
+        max-height: 38px;
         margin-bottom: 25px;
         @include setFont(28, 33);
     }
