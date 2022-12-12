@@ -1,5 +1,5 @@
 import ModalContent from './ModalContent';
-import cocktailContent from '../../templates/cocktailContent.hbs';
+import cocktailContent from '../../templates/cocktail-info-modal.hbs';
 import Modal from './Modal';
 
 export default class CocktailDetailsContent extends ModalContent {

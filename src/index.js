@@ -2,6 +2,8 @@ import CocktailDetailsContent from './js/modal/CocktailDetailsContent';
 import Modal from './js/modal/Modal';
 
 document.querySelector('.test').addEventListener('click', () => {
+  const f = new Coc();
+
   const m1 = new CocktailDetailsContent({
     id: '1',
     ingredients: ['Tequila', 'Triple sec', 'Lime juice', 'Salt'],

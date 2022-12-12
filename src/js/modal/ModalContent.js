@@ -8,7 +8,7 @@ export default class ModalContent {
 
   constructor(data) {
     this.data = data;
-    this.init.call(this);
+    this.init();
   }
 
   init() {
