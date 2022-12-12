@@ -1,47 +1,65 @@
 .button {
-  padding: 8px 16px;
+    padding: 7px 16px;
+    font-family: 'Roboto';
+    @include setFont(14, 24);
+    letter-spacing: 0.02em;
 
-  font-family: 'Roboto';
-  @include setFont(14, 24);
-  letter-spacing: 0.02em;
+    border-radius: 4px;
 
-  border-radius: 4px;
+    @include setTransition(background-color, color);
 
-  @include setTransition(background-color, color);
+    @include breakpoint(tablet) {
 
-  @include breakpoint(tablet) {
-    padding: 12px 26px;
-
-    @include setFont(20, 24);
-  }
-
-  @include breakpoint(desktop) {
-    padding-left: 38px;
-    padding-right: 38px;
-  }
-
-  &--primary {
-    color: var(--white-color);
-
-    background-color: var(--primary-button-color);
-
-    &:hover,
-    &:focus {
-      color: var(--accent-color);
-
-      background-color: var(--hover-button-color);
+        @include setFont(20, 24);
     }
-  }
 
-  &--secondary {
-    color: var(--accent-color);
+    &--primary {
+        color: var(--white-color);
+        background-color: var(--primary-button-color);
 
-    box-shadow: 0px 0px 0px 2px var(--accent-color);
+        border-radius: 4px;
 
-    &:hover,
-    &:focus {
-      box-shadow: 0px 0px 0px 1px var(--accent-color);
-      background-color: var(--hover-button-color);
+        &:hover,
+        &:focus {
+            color: var(--accent-color);
+
+            background-color: var(--hover-button-color);
+        }
+
+        // &:active {
+        //     color: var(--white-color);
+        //     background-color: var(--accent-color);
+        // }
+
+        @include breakpoint(tablet) {
+            padding: 12px 27px;
+        }
+
+        @include breakpoint(desktop) {
+            padding: 12px 38px
+        }
     }
-  }
+
+    &--secondary {
+        color: var(--accent-color);
+        background-color: transparent;
+
+        border: 1px solid var(--accent-color);
+        border-radius: 4px;
+
+        &:hover,
+        &:focus {
+            box-shadow: 0px 0px 0px 1px var(--accent-color);
+            background-color: var(--white-color);
+        }
+
+        @include breakpoint(tablet) {
+            padding: 12px 24px 12px 13px;
+        }
+
+        @include breakpoint(desktop) {
+            padding: 12px 26px 12px 24px;
+            border-width: 2px;
+        }
+    }
 }

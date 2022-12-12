@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Notify } from 'notiflix';
 
 const instance = axios.create({
-  baseURL: 'http://thecocktaildb.com/api/json/v1/1/',
+  baseURL: 'https://thecocktaildb.com/api/json/v1/1/',
 });
 
 export default class CocktailsAPI {
