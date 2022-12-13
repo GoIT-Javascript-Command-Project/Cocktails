@@ -31,7 +31,7 @@ export default class CocktailDetailsContent extends ModalContent {
    * Відкриває нове вікно з детальною інформацією про інгредіент.
    */
   _openIngredientHandler(evt) {
-    const name = evt.target.textContent.trim();
+    const name = evt.target.dataset.name.trim();
 
     CocktailsAPI.getIngredientInfo(name).then(data => {
       Modal.show(new IngredientDetailContent(data).getContentRef());
