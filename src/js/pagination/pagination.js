@@ -1,3 +1,4 @@
+import paginationTemplate from '../../templates/pagination';
 const buttonList = document.querySelector('.pagination__buttons');
 const cardList = document.querySelector('.pagination__cards');
 const nextButton = document.querySelector('#next-button');
@@ -34,11 +35,8 @@ export default class Pagination {
   }
 
   #createMarkUp(template) {
-    cardList.innerHTML = this.arrayOfItems
-      .map(item => {
-        return template;
-      })
-      .join('');
+    cardList.innerHTML =
+      this.arrayOfItems.map(template).join('') + paginationTemplate();
   }
   #showCurrentPage(numberOfPage) {
     this.currentPage = numberOfPage;
