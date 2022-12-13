@@ -1,14 +1,14 @@
-.card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+// .card-container {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
 
-    @include breakpoint(tablet) {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 32px;
-    }
-}
+//     @include breakpoint(tablet) {
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//         gap: 32px;
+//     }
+// }
 
 .cocktail-card {
     padding-bottom: 24px;
