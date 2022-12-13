@@ -11,6 +11,8 @@
   @include setFont(32, 38);
   color: var(--primary-text-color);
 
+  @include setTransition(color);
+
   @include breakpoint(tablet) {
     margin-bottom: 28px;
   }
@@ -23,6 +25,8 @@
   @include setFont(16, 24);
   text-transform: uppercase;
   color: var(--primary-text-color);
+
+  @include setTransition(color);
 
   @include breakpoint(tablet) {
     margin-bottom: 20px;
@@ -46,13 +50,14 @@
   margin-bottom: 32px;
 
   @include setFont(16, 26);
-  color: var(--gray-color);
+  color: var(--modal-text-color);
+  @include setTransition(color);
 
   &::before {
     content: '✶';
     display: inline-block;
     margin-right: 5px;
-    color: #000917;
+    color: var(--modal-title-color);
   }
 
   @include breakpoint(tablet) {
@@ -64,12 +69,14 @@
   margin-bottom: 28px;
 
   @include setFont(16, 28);
-  color: var(--gray-color);
+  color: var(--modal-text-color);
   overflow-y: auto;
+
+  @include setTransition(color);
 
   & > span {
     font-weight: 600;
-    color: #202025;
+    color: var(--primary-text-color);
   }
 
   @include breakpoint(tablet) {

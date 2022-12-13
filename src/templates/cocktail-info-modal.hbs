@@ -26,7 +26,8 @@
       <ul class='details__ingredient-list'>
         {{#each ingredients}}
           <li class='details__ingredient-item'>
-            <a class='details__ingredient-link'>
+            <a class='details__ingredient-link' data-name={{this}}>
+              {{lookup ../misure @index}}
               {{this}}
             </a>
           </li>

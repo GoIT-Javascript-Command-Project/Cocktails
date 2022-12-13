@@ -37,11 +37,14 @@
 }
 
 .details__title {
+  margin-bottom: 20px;
+
   font-family: 'Roboto';
   @include setFont(32, 38);
   font-weight: 900;
-  margin-bottom: 20px;
-  color: #000917;
+  color: var(--primary-text-color);
+
+  @include setTransition(color);
 
   @include breakpoint(tablet) {
     margin-bottom: 28px;
@@ -51,7 +54,7 @@
 .details__ingredient-title {
   font-weight: 600;
   @include setFont(16, 24);
-  color: #000917;
+  color: var(--primary-text-color);
   margin-bottom: 8px;
 }
 
@@ -76,7 +79,9 @@
 .details__ingredient-link {
   cursor: pointer;
   @include setFont(16, 26);
-  color: var(--gray-color);
+  color: var(--modal-text-color);
+
+  @include setTransition(color);
 
   &:hover,
   &:focus {
@@ -90,7 +95,9 @@
     content: '✶';
     display: inline-block;
     margin-right: 5px;
-    color: #000917;
+    color: var(--primary-text-color);
+
+    @include setTransition(color);
   }
 }
 
@@ -106,7 +113,9 @@
 
     width: 615px;
     @include setFont(16, 28);
-    color: var(--gray-color);
+    color: var(--modal-text-color);
+
+    @include setTransition(color);
   }
 }
 
@@ -132,7 +141,9 @@
     font-weight: 600;
     @include setFont(16, 26);
     text-transform: uppercase;
-    color: #000917;
+    color: var(--primary-text-color);
+
+    @include setTransition(color);
   }
 }
 
@@ -149,6 +160,8 @@
   @include setFont(16, 28);
   color: var(--gray-color);
 
+  @include setTransition(color);
+
   @include breakpoint(tablet) {
     display: none;
   }
@@ -161,6 +174,8 @@
   @include setFont(16, 26);
   text-transform: uppercase;
   color: var(--primary-text-color);
+
+  @include setTransition(color);
 
   @include breakpoint(tablet) {
     display: none;
