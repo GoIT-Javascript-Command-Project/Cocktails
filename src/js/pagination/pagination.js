@@ -45,7 +45,7 @@ export default class Pagination {
     this.#arrowButtonsStatus();
     const prevRange = (numberOfPage - 1) * this.itemsPerPage;
     const currentRange = numberOfPage * this.itemsPerPage;
-    const itemsList = document.querySelectorAll('li');
+    const itemsList = document.querySelectorAll('.cocktail-card');
     itemsList.forEach((item, index) => {
       item.classList.add('hidden');
       if (index >= prevRange && index < currentRange) {
