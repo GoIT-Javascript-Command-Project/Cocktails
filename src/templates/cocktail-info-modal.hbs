@@ -1,0 +1,52 @@
+<div class='details'>
+
+  <div class='details__top-wrap'>
+
+    <div class='details__img-wrap'>
+      <img class='details__img' src='{{image}}' alt='{{name}} cocktail image' />
+    </div>
+
+    <div class='details__inner-wrap'>
+
+      <h2 class='details__title'>{{name}}</h2>
+      <h4 class='details__instruction-title-mobile'>Instructions:</h4>
+      <p class='details__instruction-text-mobile'>{{instructions}}</p>
+
+      <div class='details__img-wrap-mobile'>
+        <img
+          class='details__img'
+          src='{{image}}'
+          alt='{{name}} cocktail image'
+        />
+      </div>
+
+      <h3 class='details__ingredient-title'>INGREDIENTS</h3>
+      <p class='details__ingredient-remark'>Per cocktail</p>
+
+      <ul class='details__ingredient-list'>
+        {{#each ingredients}}
+          <li class='details__ingredient-item'>
+            <a class='details__ingredient-link' data-name={{this}}>
+              {{lookup ../misure @index}}
+              {{this}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+
+    </div>
+
+  </div>
+
+  <h4 class='details__instruction-title'>Instructions:</h4>
+  <p class='details__instruction-text'>{{instructions}}</p>
+
+  <button type='button' class='button button--primary details__add-btn'>
+    {{#if isFavorite}}
+      Remove from favorite
+    {{else}}
+      Add to favorite
+    {{/if}}
+  </button>
+
+</div>

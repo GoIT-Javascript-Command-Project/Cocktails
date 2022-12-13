@@ -1,0 +1,99 @@
+.ingredient {
+  width: 100%;
+  height: 100%;
+}
+
+.ingredient__title {
+  margin-bottom: 20px;
+
+  font-family: 'Roboto';
+  font-weight: 900;
+  @include setFont(32, 38);
+  color: var(--primary-text-color);
+
+  @include setTransition(color);
+
+  @include breakpoint(tablet) {
+    margin-bottom: 28px;
+  }
+}
+
+.ingredient__type {
+  margin-bottom: 20px;
+
+  font-weight: 600;
+  @include setFont(16, 24);
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+
+  @include setTransition(color);
+
+  @include breakpoint(tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.ingredient__line {
+  display: none;
+
+  @include breakpoint(tablet) {
+    margin-bottom: 28px;
+
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--accent-color);
+  }
+}
+
+.ingredient__kind {
+  margin-bottom: 32px;
+
+  @include setFont(16, 26);
+  color: var(--modal-text-color);
+  @include setTransition(color);
+
+  &::before {
+    content: '✶';
+    display: inline-block;
+    margin-right: 5px;
+    color: var(--modal-title-color);
+  }
+
+  @include breakpoint(tablet) {
+    margin-bottom: 40px;
+  }
+}
+
+.ingredient__description {
+  margin-bottom: 28px;
+
+  @include setFont(16, 28);
+  color: var(--modal-text-color);
+  overflow-y: auto;
+
+  @include setTransition(color);
+
+  & > span {
+    font-weight: 600;
+    color: var(--primary-text-color);
+  }
+
+  @include breakpoint(tablet) {
+    width: 100%;
+  }
+
+  @include breakpoint(tablet) {
+    min-width: 654px;
+    max-height: 340px;
+    padding-right: 10px;
+  }
+}
+
+.ingredient__add-btn {
+  display: block;
+
+  @include breakpoint(tablet) {
+    margin-left: auto;
+  }
+}
