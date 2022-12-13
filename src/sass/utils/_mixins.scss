@@ -50,3 +50,57 @@
   }
   transition: $transitions;
 }
+
+///////////////////////////
+@mixin mq($val) {
+  @if $val==mob {
+    @media (min-width: $mobile) {
+      @content;
+    }
+  } @else if $val==mob-only {
+    @media (max-width:#{$tablet - 0.02}) {
+      @content;
+    }
+  } @else if $val==tab {
+    @media (min-width: $tablet) {
+      @content;
+    }
+  } @else if $val==tab-only {
+    @media (min-width:$tablet) and (max-width:#{$desktop - 0.02}) {
+      @content;
+    }
+  } @else if $val==desc {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  } @else if $val==noDesc {
+    @media (max-width:#{$desktop - 0.02}) {
+      @content;
+    }
+  } @else if $val==retina {
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-moz-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      @content;
+    }
+  }
+}
+
+@mixin visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+@mixin transition {
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+}
