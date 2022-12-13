@@ -204,8 +204,9 @@
     width: 210px;
 }
 
+
 .drop-wrapper {
-    margin-top: 16px;
+    margin-top: 16px;  
 }
 
 .nav-list li:hover ul{
@@ -216,6 +217,7 @@
 .drop li:hover {
     @include setTransition(background-color, opacity);
     background-color: var(--accent-color);
+    color: var(--white-color);          
 }
 
 .drop-list__item {
@@ -229,7 +231,6 @@
 // Dropdown mobile
 
 .dropdown {
-    display: inline-block;
     position: relative;
 }
 
@@ -256,6 +257,7 @@
 
 .dropdown-content a:hover {
     background-color: var(--accent-color);
+    color: var(--white-color);
 }
 
 .dropdown-button__wrapper {
@@ -267,6 +269,8 @@
     background: transparent;
     margin-right: 8px;
 }
+
+
 
 // Mobile menu
 
@@ -402,5 +406,7 @@
     border: 1px solid white;
     background-color: var(--accent-color);
 }
+
+
 
 

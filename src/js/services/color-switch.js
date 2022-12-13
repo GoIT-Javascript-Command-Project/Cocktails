@@ -1,7 +1,6 @@
 const body = document.querySelector("body");
 const toggle = document.querySelector(".toggle");
 
-
 let getMode = localStorage.getItem("mode");
 
 if (getMode && getMode === "dark") {
@@ -12,14 +11,14 @@ if (getMode && getMode === "dark") {
 
 toggle.addEventListener("click", () => {
     body.classList.toggle("dark");
-
     if (!body.classList.contains("dark")) {
+
         return localStorage.setItem("mode", "light");
- 
     }
     localStorage.setItem("mode", "dark");
-
 });
+
+
 
 toggle.addEventListener("click", () => toggle.classList.toggle("active"));
 
@@ -47,5 +46,8 @@ toggleMobile.addEventListener("click", () => {
     localStorage.setItem("mode", "dark");
 
 });
+
+toggleMobile.addEventListener("click", () => toggleMobile.classList.toggle("active"));
+
 
 
