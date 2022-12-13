@@ -1,5 +1,4 @@
 .modal-container {
-
     @include breakpoint(tablet) {
         padding: 10px;
         width: 822px;
@@ -12,7 +11,7 @@
     height: 100%;
 }
 
-.details__top-part-wrapper {
+.details__top-wrap {
     display: flex;
     flex-direction: column;
 
@@ -22,25 +21,13 @@
     }
 }
 
-.details__image-wrapper {
-    display: none;
-
-    @include breakpoint(tablet) {
-        display: block;
-        width: 288px;
-    }
-}
-
-.details__image {
-
+.details__img {
     @include breakpoint(tablet) {
         min-height: 320px;
     }
 }
 
-.details__inner-wrapper {
-
-
+.details__inner-wrap {
     @include breakpoint(tablet) {
         padding-top: 40px;
         padding-left: 32px;
@@ -52,190 +39,21 @@
     @include setFont(32, 38);
     font-weight: 900;
     margin-bottom: 20px;
-
-    color: var(--primary-text-color);
-
-    color: #202025;
+    color: #000917;
 
     @include breakpoint(tablet) {
         margin-bottom: 28px;
-        color: #000917;
     }
 }
 
-.details__subtitle {
+.details__ingredient-title {
     font-weight: 600;
     @include setFont(16, 24);
     color: #000917;
     margin-bottom: 8px;
 }
 
-.details__note-text {
-    font-weight: 300;
-    @include setFont(14, 21);
-    color: var(--primary-text-color);
-    margin-bottom: 8px;
-
-}
-
-.details__ingredient-list {
-    @include breakpoint(tablet) {
-        display: flex;
-        flex-direction: column;
-    }
-
-}
-
-.details__ingredient-item {
-    @include setFont(16, 26);
-    color: var(--gray-color);
-
-    &::before {
-        display: inline-block;
-        margin-right: 5px;
-        content: '✶';
-        color: #000917;
-    }
-}
-
-.details__bottom-subtitle {
-    display: none;
-
-    @include breakpoint(tablet) {
-        display: block;
-        margin: 0 0 24 0;
-        font-weight: 600;
-        @include setFont(16, 26);
-        text-transform: uppercase;
-        color: #000917;
-    }
-}
-
-.details__instruction-text {
-    display: none;
-
-
-    @include breakpoint(tablet) {
-        display: block;
-        margin-bottom: 40px;
-
-        max-width: 615px;
-        @include setFont(16, 28);
-        color: var(--gray-color);
-    }
-}
-
-.details .details__add-to-fav-button {
-    display: block;
-    margin-top: 22px;
-    padding: 12px 24px;
-    @include setFont(20, 24);
-
-    @include breakpoint(tablet) {
-        margin-left: auto;
-    }
-}
-
-.details__bottom-subtitle-mobile {
-    margin: 0 0 20px 0;
-
-    font-weight: 600;
-    @include setFont(16, 26);
-    text-transform: uppercase;
-    color: var(--primary-text-color);
-
-    @include breakpoint(tablet) {
-        display: none;
-    }
-}
-
-.details__instruction-text-mobile {
-    margin-bottom: 32px;
-    @include setFont(16, 28);
-    color: var(--gray-color);
-
-    @include breakpoint(tablet) {
-        display: none;
-    }
-}
-
-.details__image-wrapper-mobile {
-    margin-bottom: 22px;
-
-    @include breakpoint(tablet) {
-        display: none;
-    }
-}
-
-.modal-container {
-    @include breakpoint(tablet) {
-        padding: 10px;
-        width: 822px;
-        outline: 2px solid tomato;
-    }
-}
-
-.details {
-    width: 100%;
-    height: 100%;
-}
-
-.details__top-part-wrapper {
-    display: flex;
-    flex-direction: column;
-
-    @include breakpoint(tablet) {
-        flex-direction: row;
-        margin-bottom: 28px;
-    }
-}
-
-.details__image-wrapper {
-    display: none;
-
-    @include breakpoint(tablet) {
-        display: block;
-        width: 288px;
-    }
-}
-
-.details__image {
-    @include breakpoint(tablet) {
-        min-height: 320px;
-    }
-}
-
-.details__inner-wrapper {
-    @include breakpoint(tablet) {
-        padding-top: 40px;
-        padding-left: 32px;
-    }
-}
-
-.details__title {
-    font-family: 'Roboto';
-    @include setFont(32, 38);
-    font-weight: 900;
-    margin-bottom: 20px;
-
-    color: var(--primary-text-color);
-
-    color: #202025;
-
-    @include breakpoint(tablet) {
-        margin-bottom: 28px;
-        color: #000917;
-    }
-}
-
-.details__subtitle {
-    font-weight: 600;
-    @include setFont(16, 24);
-    color: #000917;
-    margin-bottom: 8px;
-}
-
-.details__note-text {
+.details__ingredient-remark {
     font-weight: 300;
     @include setFont(14, 21);
     color: var(--primary-text-color);
@@ -250,9 +68,6 @@
 }
 
 .details__ingredient-item {
-    @include setFont(16, 26);
-    color: var(--gray-color);
-
     &::before {
         display: inline-block;
         margin-right: 5px;
@@ -261,16 +76,14 @@
     }
 }
 
-.details__bottom-subtitle {
-    display: none;
+.details__ingredient-link {
+    @include setFont(16, 26);
+    color: var(--gray-color);
 
-    @include breakpoint(tablet) {
-        display: block;
-        margin: 0 0 24 0;
-        font-weight: 600;
-        @include setFont(16, 26);
-        text-transform: uppercase;
-        color: #000917;
+    &:hover,
+    &:focus {
+        color: var(--accent-color);
+        cursor: pointer;
     }
 }
 
@@ -287,27 +100,39 @@
     }
 }
 
-.details .details__add-to-fav-button {
+.details__img-wrap {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        width: 288px;
+    }
+}
+
+.details__instruction-title {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        margin: 0 0 24 0;
+        font-weight: 600;
+        @include setFont(16, 26);
+        text-transform: uppercase;
+        color: #000917;
+    }
+}
+
+.details .details__add-btn {
+    font-family: 'Roboto';
+    letter-spacing: 0.02em;
     display: block;
+
     margin-top: 22px;
     padding: 12px 24px;
     @include setFont(20, 24);
 
     @include breakpoint(tablet) {
         margin-left: auto;
-    }
-}
-
-.details__bottom-subtitle-mobile {
-    margin: 0 0 20px 0;
-
-    font-weight: 600;
-    @include setFont(16, 26);
-    text-transform: uppercase;
-    color: var(--primary-text-color);
-
-    @include breakpoint(tablet) {
-        display: none;
     }
 }
 
@@ -321,7 +146,20 @@
     }
 }
 
-.details__image-wrapper-mobile {
+.details__instruction-title-mobile {
+    margin: 0 0 20px 0;
+
+    font-weight: 600;
+    @include setFont(16, 26);
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.details__img-wrap-mobile {
     margin-bottom: 22px;
 
     @include breakpoint(tablet) {
