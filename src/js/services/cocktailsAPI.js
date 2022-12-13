@@ -67,6 +67,7 @@ class CocktailsAPI {
   }
 
   async getOneRandomCocktail() {
+  async getOneRandomCocktail() {
     try {
       const response = await instance.get(`random.php`);
       return this.#convertCocktailData(response)[0];
@@ -80,6 +81,7 @@ class CocktailsAPI {
    * @param {number} quantity is required
    * @returns array of objects
    */
+  async getRandomCocktails(quantity) {
   async getRandomCocktails(quantity) {
     try {
       const callArray = [];
@@ -99,6 +101,7 @@ class CocktailsAPI {
    * @returns array of objects | []
    */
   async getCocktailsByFirstLetter(letter) {
+  async getCocktailsByFirstLetter(letter) {
     try {
       const response = await instance.get(`search.php?f=${letter}`);
       if (!response.data.drinks) return [];
@@ -112,6 +115,7 @@ class CocktailsAPI {
    * @param {string} name is required
    * @returns array of objects | []
    */
+  async getCocktailsByName(name) {
   async getCocktailsByName(name) {
     try {
       const response = await instance.get(`search.php?s=${name}`);
@@ -127,6 +131,7 @@ class CocktailsAPI {
    * @returns object | undefined
    */
   async getCocktailInfoById(id) {
+  async getCocktailInfoById(id) {
     try {
       const response = await instance.get(`lookup.php?i=${id}`);
       if (!response.data.drinks) return;
@@ -141,6 +146,7 @@ class CocktailsAPI {
    * @returns object | undefined
    */
   async getIngredientInfo(ingredient) {
+  async getIngredientInfo(ingredient) {
     try {
       const response = await instance.get(`search.php?i=${ingredient}`);
       if (!response.data.ingredients) return;
@@ -150,5 +156,7 @@ class CocktailsAPI {
     }
   }
 }
+
+export default CocktailsAPI.getInstance();
 
 export default CocktailsAPI.getInstance();

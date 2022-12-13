@@ -1,0 +1,168 @@
+// .modal-container {
+//     @include breakpoint(tablet) {
+//         padding: 10px;
+//         width: 822px;
+//         outline: 2px solid tomato;
+//     }
+// }
+
+.details {
+    width: 100%;
+    height: 100%;
+}
+
+.details__top-wrap {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(tablet) {
+        flex-direction: row;
+        margin-bottom: 28px;
+    }
+}
+
+.details__img {
+    @include breakpoint(tablet) {
+        min-height: 320px;
+    }
+}
+
+.details__inner-wrap {
+    @include breakpoint(tablet) {
+        padding-top: 40px;
+        padding-left: 32px;
+    }
+}
+
+.details__title {
+    font-family: 'Roboto';
+    @include setFont(32, 38);
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #000917;
+
+    @include breakpoint(tablet) {
+        margin-bottom: 28px;
+    }
+}
+
+.details__ingredient-title {
+    font-weight: 600;
+    @include setFont(16, 24);
+    color: #000917;
+    margin-bottom: 8px;
+}
+
+.details__ingredient-remark {
+    font-weight: 300;
+    @include setFont(14, 21);
+    color: var(--primary-text-color);
+    margin-bottom: 8px;
+}
+
+.details__ingredient-list {
+    @include breakpoint(tablet) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.details__ingredient-item {
+    &::before {
+        display: inline-block;
+        margin-right: 5px;
+        content: '✶';
+        color: #000917;
+    }
+}
+
+.details__ingredient-link {
+    @include setFont(16, 26);
+    color: var(--gray-color);
+
+    &:hover,
+    &:focus {
+        color: var(--accent-color);
+        cursor: pointer;
+    }
+}
+
+.details__instruction-text {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        margin-bottom: 40px;
+
+        max-width: 615px;
+        @include setFont(16, 28);
+        color: var(--gray-color);
+    }
+}
+
+.details__img-wrap {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        width: 288px;
+    }
+}
+
+.details__instruction-title {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        margin: 0 0 24 0;
+        font-weight: 600;
+        @include setFont(16, 26);
+        text-transform: uppercase;
+        color: #000917;
+    }
+}
+
+.details .details__add-btn {
+    font-family: 'Roboto';
+    letter-spacing: 0.02em;
+    display: block;
+
+    margin-top: 22px;
+    padding: 12px 24px;
+    @include setFont(20, 24);
+
+    @include breakpoint(tablet) {
+        margin-left: auto;
+    }
+}
+
+.details__instruction-text-mobile {
+    margin-bottom: 32px;
+    @include setFont(16, 28);
+    color: var(--gray-color);
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.details__instruction-title-mobile {
+    margin: 0 0 20px 0;
+
+    font-weight: 600;
+    @include setFont(16, 26);
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.details__img-wrap-mobile {
+    margin-bottom: 22px;
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
