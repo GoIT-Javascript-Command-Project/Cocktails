@@ -8,7 +8,7 @@ const instance = axios.create({
 class CocktailsAPI {
   constructor() {
     if (this._instance) {
-      throw new Error("Can't create new instance");
+      throw new Error("New instance can't be created!");
     }
   }
 
@@ -71,6 +71,7 @@ class CocktailsAPI {
       const response = await instance.get(`random.php`);
       return this.#convertCocktailData(response)[0];
     } catch (error) {
+      console.log(error);
       Notify.warning('Something went wrong... Please try again in few minutes');
     }
   }
