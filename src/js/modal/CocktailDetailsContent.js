@@ -6,8 +6,11 @@ import IngredientDetailContent from './IngredientDetailContent';
 import LocalStorage from '../services/localStorage';
 
 export default class CocktailDetailsContent extends ModalContent {
-  constructor(data) {
-    super({ ...data, isFavorite: LocalStorage.hasFavoriteCocktail(data.id) });
+  constructor(data, cb = null) {
+    super(
+      { ...data, isFavorite: LocalStorage.hasFavoriteCocktail(data.id) },
+      cb
+    );
   }
 
   init() {
@@ -53,6 +56,7 @@ export default class CocktailDetailsContent extends ModalContent {
       evt.target.textContent = 'Remote from favorite';
     }
     this.data.isFavorite = !isFavorite;
+    this.callback(this.data.isFavorite);
   }
 
   /**

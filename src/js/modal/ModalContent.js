@@ -5,8 +5,9 @@ import svg from '../../images/icons.svg';
 export default class ModalContent {
   contentRef = null;
 
-  constructor(data) {
+  constructor(data, cb = null) {
     this.data = data;
+    this.callback = cb;
     this.init();
   }
 
