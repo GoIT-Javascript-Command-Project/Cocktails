@@ -1,14 +1,23 @@
 <div class='ingredient'>
 
-    <h2 class=" ingredient__title">{{name}}</h2>
+  <h2 class='ingredient__title'>{{name}}</h2>
 
-    <p class="ingredient__type">{{type}}</p>
+  <p class='ingredient__type'>{{type}}</p>
 
-    <div class="ingredient__line"></div>
+  <div class='ingredient__line'></div>
 
-    <p class="ingredient__kind">Contains alcohol: {{isAlcohol}}</p>
+  {{#if description}}
+    <p class='ingredient__description'>{{{description}}}</p>
+  {{/if}}
 
-    <button type='button' class='button button--primary ingredient__add-btn'>Add to
-        favorite</button>
+  <p class='ingredient__kind'>Contains alcohol: {{isAlcohol}}</p>
+
+  <button type='button' class='button button--primary ingredient__add-btn'>
+    {{#if isFavorite}}
+      Remove from favorite
+    {{else}}
+      Add to favorite
+    {{/if}}
+  </button>
 
 </div>

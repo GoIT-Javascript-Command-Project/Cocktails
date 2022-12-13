@@ -3,7 +3,6 @@ import modalContent from '../../templates/modalContent.hbs';
 import svg from '../../images/icons.svg';
 
 export default class ModalContent {
-  #refs = {};
   contentRef = null;
 
   constructor(data) {

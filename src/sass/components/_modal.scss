@@ -5,6 +5,7 @@
   right: 0;
   top: 0;
 
+  overflow-y: auto;
   background-color: rgba(black, 0.4);
   opacity: 1;
 
@@ -18,39 +19,52 @@
     pointer-events: none;
 
     opacity: 0;
-
-    & .modal__content {
-      //transform: translate(-50%, -50%) scale(1.1);
-    }
   }
 }
 
 .modal__content {
   --padding-x: 20px;
   --padding-y: 40px;
+
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 0;
+  top: 0;
 
   padding: var(--padding-y) var(--padding-x);
-  min-width: 822px;
 
+  overflow-y: auto;
   background-color: #fff;
 
-  transform: translate(-50%, -50%) scale(0.7);
   @include setTransition(transform);
 
   &--show {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(0, 0) scale(1);
   }
 
   &--waiting {
-    transform: translate(-1000%, -50%) scale(0.5);
+    transform: translate(-1000%, 0) scale(1);
+  }
+
+  @include breakpoint(false, tablet) {
+    min-width: 100%;
   }
 
   @include breakpoint(tablet) {
     --padding-x: 28px;
+
+    left: 50%;
+    top: 50%;
     padding-bottom: var(--padding-x);
+
+    transform: translate(-50%, -50%) scale(0.7);
+
+    &--show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &--waiting {
+      transform: translate(-1000%, -50%) scale(0.5);
+    }
   }
 }
 
@@ -61,4 +75,11 @@
 
   width: 32px;
   height: 32px;
+
+  @include setTransition(color);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+  }
 }

@@ -3,10 +3,11 @@ import cocktailContent from '../../templates/cocktail-info-modal.hbs';
 import Modal from './Modal';
 import CocktailsAPI from '../services/cocktailsAPI';
 import IngredientDetailContent from './IngredientDetailContent';
+import LocalStorage from '../services/localStorage';
 
 export default class CocktailDetailsContent extends ModalContent {
   constructor(data) {
-    super({ ...data });
+    super({ ...data, isFavorite: LocalStorage.hasFavoriteCocktail(data.id) });
   }
 
   init() {
@@ -26,28 +27,48 @@ export default class CocktailDetailsContent extends ModalContent {
     this.contentRef.append(template.firstChild);
   }
 
+  /**
+   * Відкриває нове вікно з детальною інформацією про інгредіент.
+   */
   _openIngredientHandler(evt) {
-    const name = evt.target.textContent;
-    const cocktail = new CocktailsAPI();
+    const name = evt.target.textContent.trim();
 
-    cocktail.getIngredientInfo(name).then(data => {
+    CocktailsAPI.getIngredientInfo(name).then(data => {
       Modal.show(new IngredientDetailContent(data).getContentRef());
     });
+  }
+
+  /**
+   * Додавання/видалення коктеля з фаворитів.
+   */
+  _favoriteClickHandler(evt) {
+    evt.target.blur();
+    const { isFavorite, ...data } = this.data;
+
+    if (isFavorite) {
+      LocalStorage.removeFavoriteCocktail(data.id);
+      evt.target.textContent = 'Add to favorite';
+    } else {
+      LocalStorage.setFavoriteCocktails(data);
+      evt.target.textContent = 'Remote from favorite';
+    }
+    this.data.isFavorite = !isFavorite;
   }
 
   /**
    * Додає прослуховувачі подій.
    */
   _addEventListener() {
-    const ingredientsRef = this.contentRef.querySelector(
-      '.cocktail-details-block__ingredient-list'
+    const { contentRef } = this;
+    const refs = {
+      ingredientsRef: contentRef.querySelector('.details__ingredient-list'),
+      favoriteBtn: contentRef.querySelector('.button'),
+    };
+
+    refs.ingredientsRef.addEventListener('click', this._openIngredientHandler);
+    refs.favoriteBtn.addEventListener(
+      'click',
+      this._favoriteClickHandler.bind(this)
     );
-    const favoriteBtn = this.contentRef.querySelector('.button');
-
-    ingredientsRef.addEventListener('click', this._openIngredientHandler);
-
-    favoriteBtn.addEventListener('click', evt => {
-      console.log(evt.target);
-    });
   }
 }

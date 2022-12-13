@@ -69,7 +69,7 @@ class Modal {
 
     // Перевірка на наявнісь відкритих вікон.
     if (!this.#modals.length) {
-      this.closeAll();
+      this.#ref.classList.add('modal--hidden');
     }
   }
 
