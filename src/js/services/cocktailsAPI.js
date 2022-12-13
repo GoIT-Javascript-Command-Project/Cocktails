@@ -5,7 +5,21 @@ const instance = axios.create({
   baseURL: 'https://thecocktaildb.com/api/json/v1/1/',
 });
 
-export default class CocktailsAPI {
+class CocktailsAPI {
+  constructor() {
+    if (this._instance) {
+      throw new Error("Can't create new instance");
+    }
+  }
+
+  static getInstance() {
+    if (!this._instance) {
+      this._instance = new CocktailsAPI();
+    }
+
+    return this._instance;
+  }
+
   #getIngredients(obj) {
     const arrayOfIngr = [];
     for (let key in obj) {
@@ -71,8 +85,8 @@ export default class CocktailsAPI {
       for (let i = 0; i < quantity; i += 1) {
         callArray.push(this.getOneRandomCocktail());
       }
-      const arrayOfRandomCoctails = await Promise.all(callArray);
-      return arrayOfRandomCoctails;
+      const arrayOfRandomCocktails = await Promise.all(callArray);
+      return arrayOfRandomCocktails;
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
     }
@@ -135,3 +149,5 @@ export default class CocktailsAPI {
     }
   }
 }
+
+export default CocktailsAPI.getInstance();
