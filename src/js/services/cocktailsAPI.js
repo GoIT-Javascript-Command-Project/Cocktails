@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Notify } from 'notiflix';
 
 const instance = axios.create({
-  baseURL: 'http://thecocktaildb.com/api/json/v1/1/',
+  baseURL: 'https://thecocktaildb.com/api/json/v1/1/',
 });
 
 export default class CocktailsAPI {
@@ -52,7 +52,7 @@ export default class CocktailsAPI {
     return ingredientData;
   }
 
-  async getOneRandomCocktail() {
+  static async getOneRandomCocktail() {
     try {
       const response = await instance.get(`random.php`);
       return this.#convertCocktailData(response)[0];
@@ -65,14 +65,14 @@ export default class CocktailsAPI {
    * @param {number} quantity is required
    * @returns array of objects
    */
-  async getRandomCocktails(quantity) {
+  static async getRandomCocktails(quantity) {
     try {
       const callArray = [];
       for (let i = 0; i < quantity; i += 1) {
         callArray.push(this.getOneRandomCocktail());
       }
-      const arrayOfRandomCoctails = await Promise.all(callArray);
-      return arrayOfRandomCoctails;
+      const arrayOfRandomCocktails = await Promise.all(callArray);
+      return arrayOfRandomCocktails;
     } catch (error) {
       Notify.warning('Something went wrong... Please try again in few minutes');
     }
@@ -83,7 +83,7 @@ export default class CocktailsAPI {
    * @param {string} letter is required
    * @returns array of objects | []
    */
-  async getCocktailsByFirstLetter(letter) {
+  static async getCocktailsByFirstLetter(letter) {
     try {
       const response = await instance.get(`search.php?f=${letter}`);
       if (!response.data.drinks) return [];
@@ -97,7 +97,7 @@ export default class CocktailsAPI {
    * @param {string} name is required
    * @returns array of objects | []
    */
-  async getCocktailsByName(name) {
+  static async getCocktailsByName(name) {
     try {
       const response = await instance.get(`search.php?s=${name}`);
       if (!response.data.drinks) return [];
@@ -111,7 +111,7 @@ export default class CocktailsAPI {
    * @param {string} id is required
    * @returns object | undefined
    */
-  async getCocktailInfoById(id) {
+  static async getCocktailInfoById(id) {
     try {
       const response = await instance.get(`lookup.php?i=${id}`);
       if (!response.data.drinks) return;
@@ -125,7 +125,7 @@ export default class CocktailsAPI {
    * @param {string} ingredient is required
    * @returns object | undefined
    */
-  async getIngredientInfo(ingredient) {
+  static async getIngredientInfo(ingredient) {
     try {
       const response = await instance.get(`search.php?i=${ingredient}`);
       if (!response.data.ingredients) return;
