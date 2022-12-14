@@ -11,13 +11,13 @@
   const smoothLinks = document.querySelectorAll('a[href^="#"]');
   for (let smoothLink of smoothLinks) {
     smoothLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      const id = smoothLink.getAttribute('href');
+      // e.preventDefault();
+      // const id = smoothLink.getAttribute('href');
 
-      document.querySelector(id).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      // document.querySelector(id).scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'start',
+      // });
 
       hideMenu();
     });

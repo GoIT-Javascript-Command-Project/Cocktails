@@ -13,11 +13,12 @@ body.dark {
   --modal-title-color: #fcfcfc;
 }
 
-
 body {
   font-family: 'Poppins', sans-serif;
   @include setFont(18, 24);
   color: var(--primary-text-color);
 
   background-color: var(--background-color);
+
+  @include setTransition(background-color);
 }
