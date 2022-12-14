@@ -2,12 +2,15 @@
 // font-family: 'Poppins', sans-serif;
 // font-family: 'Roboto', sans-serif;
 
-body.light {
-}
+// body.light {
+// }
 
 body.dark {
   --background-color: #202025;
   --primary-text-color: #fcfcfc;
+  --pagination-number-color: #fcfcfc;
+  --modal-text-color: #bdbdbd;
+  --modal-title-color: #fcfcfc;
 }
 
 body {
@@ -16,4 +19,6 @@ body {
   color: var(--primary-text-color);
 
   background-color: var(--background-color);
+
+  @include setTransition(background-color);
 }

@@ -1,0 +1,25 @@
+<li class='ingredient-card'>
+
+  <h2 class='ingredient-card__title'>{{name}}</h2>
+  <h3 class='ingredient-card__subtitle'>{{type}}</h3>
+
+  <div class='ingredient-card__buttons-wrapper'>
+    <button class='button button--primary' data-info>Learn more</button>
+    <button
+      class='button button--secondary ingrediens-card__button'
+      data-add
+      data-favorite={{isFavorite}}
+    >
+      <span class='button__text'>
+        {{#if isFavorite}}
+          Remove
+        {{else}}
+          Add to
+        {{/if}}
+      </span>
+
+      <svg class='button__icon' width='21' height='19'>
+        <use href={{svg}}></use>
+      </svg></button>
+  </div>
+</li>

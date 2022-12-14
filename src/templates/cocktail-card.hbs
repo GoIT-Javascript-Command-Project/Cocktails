@@ -1,0 +1,30 @@
+<li class='cocktail-card'>
+
+  <img
+    class='cocktail-card__image'
+    src='{{image}}'
+    alt='{{name}} cocktail image'
+  />
+  <h2 class='cocktail-card__title'>{{name}}</h2>
+  <div class='cocktail-card__buttons-wrapper'>
+    <button class='button button--primary' data-info>Learn more</button>
+    <button
+      class='button button--secondary'
+      data-add
+      data-favorite={{isFavorite}}
+    >
+      <span class='button__text'>
+        {{#if isFavorite}}
+          Remove
+        {{else}}
+          Add to
+        {{/if}}
+      </span>
+      {{! <svg class='button__icon cocktail-card__button-icon'> }}
+      <svg class='button__icon' width='21' height='19'>
+        <use href={{svg}}></use>
+      </svg></button>
+  </div>
+
+
+</li>
