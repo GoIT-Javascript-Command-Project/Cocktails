@@ -3,7 +3,7 @@ import PageController, { pages } from './js/PageController';
 import LocalStorage from './js/services/localStorage';
 import FavoriteCocktails from './js/FavoriteCocktais';
 import { mobileMenuInit } from './js/mobile-menu';
-import { themeInit } from './js/color-switch';
+import { themeInit } from './js/themeSwitcher';
 
 mobileMenuInit();
 themeInit();
