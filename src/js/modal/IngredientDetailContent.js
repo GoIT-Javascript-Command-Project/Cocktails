@@ -41,7 +41,7 @@ export default class IngredientDetailContent extends ModalContent {
       evt.target.textContent = 'Remote from favorite';
     }
     this.data.isFavorite = !isFavorite;
-    this.callback(this.data.isFavorite);
+    if (this.callback) this.callback(this.data.isFavorite);
   }
 
   _addEventListener() {
