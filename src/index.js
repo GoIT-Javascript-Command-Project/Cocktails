@@ -11,3 +11,4 @@ CocktailsAPI.getRandomCocktails(9).then(data => {
     })
   );
 });
+ё;
