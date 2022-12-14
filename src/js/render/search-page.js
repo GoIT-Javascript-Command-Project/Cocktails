@@ -1,15 +1,26 @@
 import Pagination from '../pagination/pagination';
 import CocktailsAPI from '../services/cocktailsAPI';
-import makeCocktailCard from '../../templates/cocktail-card.hbs';
 
 const form = document.querySelector('form');
-export default function getWord() {
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    const cocktails = await CocktailsAPI.getCocktailsByName(
-      event.currentTarget.elements.cocktail.value
-    );
-    const pagination = new Pagination(cocktails, 3, makeCocktailCard);
+
+export default class RenderSearchPage {
+  constructor() {
+    this.searchWord = '';
+    this.data;
+  }
+  render() {
+    this.getWord();
+  }
+  getWord() {
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      this.searchWord = event.currentTarget.elements.cocktail.value;
+      this.data = await CocktailsAPI.getCocktailsByName(this.searchWord);
+      this.createPagination();
+    });
+  }
+  createPagination() {
+    const pagination = new Pagination(this.data, 3);
     pagination.init();
-  });
+  }
 }

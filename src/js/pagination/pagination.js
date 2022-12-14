@@ -1,20 +1,41 @@
-import paginationTemplate from '../../templates/pagination';
+import CocktailCard from './../CocktailCard';
+const paginationContainer = document.querySelector('.pagination__container');
+const mainTitle = document.querySelector('.section__title--success');
+const paginationResult = document.querySelector('.fail-result');
 const buttonList = document.querySelector('.pagination__buttons');
 const cardList = document.querySelector('.pagination__cards');
 const nextButton = document.querySelector('#next-button');
 const prevButton = document.querySelector('#prev-button');
 
 export default class Pagination {
-  constructor(arrayOfItems, itemsPerPage, template) {
+  constructor(arrayOfItems, itemsPerPage) {
     this.arrayOfItems = arrayOfItems;
     this.itemsPerPage = itemsPerPage;
-    this.template = template;
-    this.numberOfPages = Math.ceil(arrayOfItems.length / itemsPerPage);
+    this.numberOfPages = Math.ceil(
+      this.arrayOfItems.length / this.itemsPerPage
+    );
     this.currentPage = 0;
   }
 
   init() {
-    this.#createMarkUp(this.template);
+    if (this.arrayOfItems.length === 0) {
+      cardList.innerHTML = '';
+      paginationContainer.classList.add('hidden');
+      mainTitle.classList.add('hidden');
+      paginationResult.classList.remove('hidden');
+      return;
+    }
+    if (this.arrayOfItems.length <= this.itemsPerPage) {
+      paginationContainer.classList.add('hidden');
+      mainTitle.textContent = 'Searching results';
+      mainTitle.classList.remove('hidden');
+      paginationResult.classList.add('hidden');
+      return this.#createMarkUp();
+    }
+    paginationResult.classList.add('hidden');
+    mainTitle.textContent = 'Searching results';
+    paginationContainer.classList.remove('hidden');
+    this.#createMarkUp();
     this.#showCurrentPage(1);
     this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     buttonList.addEventListener('click', event => {
@@ -34,9 +55,13 @@ export default class Pagination {
     });
   }
 
-  #createMarkUp(template) {
-    cardList.innerHTML =
-      this.arrayOfItems.map(template).join('') + paginationTemplate();
+  #createMarkUp() {
+    cardList.innerHTML = '';
+    cardList.append(
+      ...this.arrayOfItems.map(item => {
+        return new CocktailCard(item).render();
+      })
+    );
   }
   #showCurrentPage(numberOfPage) {
     this.currentPage = numberOfPage;
@@ -68,7 +93,7 @@ export default class Pagination {
       buttons += this.#createButton(1);
 
       if (currentPage > 3) {
-        buttons += `<span>...</span>`;
+        buttons += `<span class="pagination__dots">...</span>`;
       }
       if (currentPage === numberOfPages) {
         buttons += this.#createButton(currentPage - 2);
@@ -86,7 +111,7 @@ export default class Pagination {
         buttons += this.#createButton(currentPage + 2);
       }
       if (currentPage < numberOfPages - 2) {
-        buttons += `<span>...</span>`;
+        buttons += `<span class="pagination__dots">...</span>`;
       }
       if (numberOfPages > 1) {
         buttons += this.#createButton(numberOfPages);

@@ -8,5 +8,10 @@
     @include setFont(48, 72);
     margin-bottom: 60px;
     text-align: center;
+    &--fail {
+        width: 493px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 

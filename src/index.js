@@ -1,6 +1,7 @@
 import RenderMainPage from './js/render/main-page';
-import getWord from './js/render/search-page';
-const renderMainPage = new RenderMainPage();
-renderMainPage.render();
+import RenderSearchPage from './js/render/search-page';
 
-getWord();
+const renderMainPage = new RenderMainPage();
+const renderSearchPage = new RenderSearchPage();
+renderMainPage.render();
+renderSearchPage.render();
