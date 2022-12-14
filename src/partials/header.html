@@ -1,4 +1,4 @@
- <header class="header section">
+<header class="header section">
     <div class="nav-flex container">
         <a class="logo" href="./index.html">
             <img src="./images/logotype.svg" />
@@ -6,37 +6,39 @@
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-list__item">
-                    <a class="nav-list__link" href="#">Home</a>
-                </li> 
+                    <a class="nav-list__link" href="#" data-page="home">Home</a>
+                </li>
                 <li class="nav-list__item">
                     <a class="nav-list__link" href="#">Favorite</a>
                     <div class="drop-wrapper">
                         <ul class="drop">
-                        <li class="drop-list__item"><a class="drop-link" href="./index.html">Favorite cocktails</a></li>
-                        <li class="drop-list__item"><a class="drop-link" href="./index.html">Favorite ingredients</a></li>
-                    </ul>
-                </div>
+                            <li class="drop-list__item"><a class="drop-link" href="./index.html"
+                                    data-page="favorite-cocktails">Favorite cocktails</a></li>
+                            <li class="drop-list__item"><a class="drop-link" href="./index.html"
+                                    data-page="favorite-ingredients">Favorite ingredients</a></li>
+                        </ul>
+                    </div>
 
                 </li>
             </ul>
         </nav>
         <div class="usability">
-            <div class="form__input-wrapper">
-                <button type="button" class="form__input__button">
+            <form class="form__input-wrapper">
+                <button type="submit" class="form__input__button">
                     <svg class="form__input__icon" width="19" height="19">
                         <use href="./images/icons.svg#search-icon"></use>
                     </svg>
-                    <input type="text" class="input" placeholder="Search">
+                    <input type="text" name="query" class="input" placeholder="Search">
                 </button>
-            </div>
-            
+            </form>
 
-        <div class="mode__container">
-            <span id="text" class="lighty">Light</span>
-            <div class="toggle"></div>
-            <span id="text" class="darky">Dark</span>
+
+            <div class="mode__container">
+                <span id="text" class="lighty">Light</span>
+                <div class="toggle"></div>
+                <span id="text" class="darky">Dark</span>
+            </div>
         </div>
-    </div>
 
         <button class="menu-open" data-menu-open>
             <svg width="30" height="30">
@@ -54,9 +56,9 @@
             </a>
 
             <div class="mobile-mode__container">
-            <span class="mobile-lighty">Light</span>
-            <div class="mobile__toggle"></div>
-            <span class="mobile-darky">Dark</span>
+                <span class="mobile-lighty">Light</span>
+                <div class="mobile__toggle"></div>
+                <span class="mobile-darky">Dark</span>
             </div>
 
             <button class="menu-close" data-menu-close>
@@ -68,36 +70,37 @@
         </div>
         <div class="container">
 
-            <div class="mobile-input__wrapper">
-                <button type="button" class="form__input__button">
+            <form class="mobile-input__wrapper">
+                <button type="submit" class="form__input__button">
                     <svg class="form__input__icon" width="19" height="19">
                         <use href="./images/icons.svg#search-icon"></use>
                     </svg>
-                    <input type="text" class="mobile__input" placeholder="Search">
+                    <input type="text" name="query" class="mobile__input" placeholder="Search">
                 </button>
-            </div>
+            </form>
 
             <nav class="mobile-nav">
-                            <ul class="mob-menu-list">
-                                <li class="mob-menu-list__item">
-                                    <a class="mob-menu-list__link" href="#">Home</a>
-                                </li>
-                             <div class="dropdown">
-                                <div class="dropdown-button__wrapper">
-                                    <button class="dropdown__button">Favorite</button>
-                                    <svg class="mobile__svg__icon" width="19" height="19">
-                                        <use href="./images/icons.svg#mobile-menu-arrow-icon"></use>
-                                    </svg>
-                                </div>
-                            
-                            <div class="dropdown-content">
-                            <a  class="mobile-dropdown__item" href="./index.html">Favorite cocktails</a>
-                           <a class="mobile-dropdown__item" href="./index.html">Favorite ingredients</a>
-                            </div>
-                            </div>
-                            </ul>
+                <ul class="mob-menu-list">
+                    <li class="mob-menu-list__item">
+                        <a class="mob-menu-list__link" href="#" data-page="home">Home</a>
+                    </li>
+                    <div class="dropdown">
+                        <div class="dropdown-button__wrapper">
+                            <button class="dropdown__button">Favorite</button>
+                            <svg class="mobile__svg__icon" width="19" height="19">
+                                <use href="./images/icons.svg#mobile-menu-arrow-icon"></use>
+                            </svg>
+                        </div>
+
+                        <div class="dropdown-content">
+                            <a class="mobile-dropdown__item" href="./index.html" data-page="favorite-cocktails">Favorite
+                                cocktails</a>
+                            <a class="mobile-dropdown__item" href="./index.html"
+                                data-page="favorite-ingredients">Favorite ingredients</a>
+                        </div>
+                    </div>
+                </ul>
             </nav>
         </div>
     </div>
-</header> 
-
+</header>

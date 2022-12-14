@@ -60,7 +60,6 @@ export default class CocktailCard {
       LocalStorage.setFavoriteCocktails(data);
     } else {
       LocalStorage.removeFavoriteCocktail(data.id);
-      this.#isRemovable && this.#contentRef.remove();
     }
 
     this.#setFavorite(value);
@@ -73,6 +72,7 @@ export default class CocktailCard {
       favoriteText.textContent = 'Remove';
     } else {
       favoriteText.textContent = 'Add to';
+      this.#isRemovable && this.#contentRef.remove();
     }
 
     favoriteBtn.dataset.favorite = value;
