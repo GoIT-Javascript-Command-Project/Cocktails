@@ -1,0 +1,10 @@
+.pagination__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        @include breakpoint(tablet) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+    }
