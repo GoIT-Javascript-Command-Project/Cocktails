@@ -8,7 +8,6 @@ export default class RenderMainPage {
     const template = mainPage();
     section.innerHTML = template;
     const cardList = section.querySelector('.pagination__cards');
-    console.log(cardList, section);
     cardList.append(
       ...data.map(item => {
         return new CocktailCard(item).render();
