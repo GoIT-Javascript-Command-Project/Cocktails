@@ -42,7 +42,7 @@ function toggleTheme() {
 
 function setTheme(theme) {
   body.classList.remove(theme === 'light' ? 'dark' : 'light');
-  body.classList.add(theme);
+  body.classList.add(theme.trim());
 }
 
 export const themeInit = () => {
