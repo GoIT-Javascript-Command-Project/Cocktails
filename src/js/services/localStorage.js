@@ -46,7 +46,7 @@ class LocalStorage {
   }
 
   static getTheme() {
-    return localStorage.getItem(THEME_KEY) || '';
+    return localStorage.getItem(THEME_KEY) || 'light';
   }
 
   static setTheme(theme) {
