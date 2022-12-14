@@ -1,48 +1,41 @@
 <section class="hero section">
-   <div class="container">
-    
-    <div class="hero__wrapper">
-        <h1 class="hero__title">A party without cocktails is not like a party</h1>
-        <p class="hero__text">Search your favorite cocktail by ABC</p>
-        <div class="hero__list"></div>
-    </div>
-    <div class="picture-section">
-        <picture class="hero__img">
+    <div class="container hero__container">
+
+        <div class="hero__wrapper">
+            <h1 class="hero__title">A party without cocktails<br>is not like a party</h1>
+            <p class="hero__text">Search your favorite cocktail by ABC</p>
+            <div class="hero__list"></div>
+        </div>
+        <picture class="hero__picture">
             <source srcset="./images/hero-desktop.webp 1x,
                         ./images/hero-desktop@2x.webp 2x" media="(min-width: 1280px)" />
-            <source srcset="./images/hero-desktop.png 1x, 
+            <source srcset="./images/hero-desktop.png 1x,
                         ./images/hero-desktop@2x.png 2x" media="(min-width: 1280px)" />
             <source srcset="./images/hero-tablet.webp 1x,
                         ./images/hero-tablet@2x.webp 2x" media="(min-width: 768px)" />
-            <source srcset="./images/hero-tablet.png 1x, 
+            <source srcset="./images/hero-tablet.png 1x,
                         ./images/hero-tablet@2x.png 2x" media="(min-width: 768px)" />
-            <source srcset="./images/hero-mobile.webp 1x, 
-                        ./images/hero-mobile@2x.webp 2x" />
-            <source srcset="./images/hero-mobile.png 1x, 
-                        ./images/hero-mobile@2x.png 2x" />
-            <img src="./images/hero-mobile.png" alt="Коктейль" loading="lazy" />
+            <source srcset="./images/hero-mobile.webp 1x,
+                        ./images/hero-mobile@2x.webp 2x" media="(max-width: 767.98px)" />
+            <source srcset="./images/hero-mobile.png 1x,
+                        ./images/hero-mobile@2x.png 2x" media="(max-width: 767.98px)" />
+            <img class="hero__img" src="./images/hero-mobile.png" alt="Коктейль" loading="lazy" />
         </picture>
-    </div>
-    <p class="hero__text--mob">Search your favorite cocktail by ABC</p>
-    <div class="app">
-        <div class="hero__wrapper-select">
-            <div id="select" class="hero__select--mob">
-                <div class="select__input">
-                    <span class="input-span">A</span>
-                    <svg class="hero__icon" width="24" height="24">
-                        <use href="./images/icons.svg#hero-arrow-icon"></use>
-                    </svg>
+        <p class="hero__text--mob">Search your favorite cocktail by ABC</p>
+        <div class="app">
+            <div class="hero__wrapper-select">
+                <div id="select" class="hero__select--mob">
+                    <div class="select__input">
+                        <span class="input-span">A</span>
+                        <svg class="hero__icon" width="24" height="24">
+                            <use href="./images/icons.svg#hero-arrow-icon"></use>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="gallery__container container">
+            <h2 class="gallery__title"> </h2>
+        </div>
     </div>
-    <div class="gallery__container container">
-        <h2 class="gallery__title"> </h2>
-    </div>
-</div>
 </section>
-<!-- <section class="gallery-section gallery">
-  <div class="gallery__container container">
-    <h2 class="gallery__title"> </h2>
-  </div>
-</section> -->
