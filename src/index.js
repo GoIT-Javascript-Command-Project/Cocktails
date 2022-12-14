@@ -3,6 +3,9 @@ import RenderSearchPage from './js/render/search-page';
 import PageController, { pages } from './js/PageController';
 import FavoriteCocktails from './js/FavoriteCocktais';
 import CocktailsAPI from './js/services/cocktailsAPI';
+import { mobileMenuInit } from './js/mobile-menu';
+import { themeInit } from './js/themeSwitcher';
+import FavoriteIngredients from './js/FavoriteIngredients';
 
 mobileMenuInit();
 themeInit();
