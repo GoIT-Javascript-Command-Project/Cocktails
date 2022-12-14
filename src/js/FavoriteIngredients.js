@@ -6,7 +6,7 @@ export default class FavoriteIngredients {
   #contentRef = null;
   #property = {
     title: 'Favorite ingredients',
-    classList: 'section favorite-ingredients',
+    classList: 'section',
     notFound:
       "<p class='section__not-found'>You haven't added any favorite ingridients yet.</p>",
   };
