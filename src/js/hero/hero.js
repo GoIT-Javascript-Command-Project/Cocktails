@@ -1,4 +1,4 @@
-import { getCocktailsByFirstLetter } from './services/cocktailAPI';
+// import { getCocktailsByFirstLetter } from './services/cocktailAPI';
 
 const { heroButtonRef, letterList, inputMobile, inputSpan, selectLetter } = {
   heroButtonRef: document.querySelector('.hero__list'),
