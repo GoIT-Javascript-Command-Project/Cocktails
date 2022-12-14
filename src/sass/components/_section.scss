@@ -4,18 +4,7 @@
     padding-bottom: 60px;
 }
 
-// .section__title {
-//     @include setFont(48, 72);
-//     margin-bottom: 60px;
-//     text-align: center;
-//     &--fail {
-//         width: 493px;
-//         margin-right: auto;
-//         margin-left: auto;
-//     }
 
-//   padding-bottom: 60px;
-// }
 
 .section__title {
   margin-bottom: 60px;
@@ -35,6 +24,11 @@
   @include breakpoint(desktop) {
     @include setFont(48, 72);
   }
+    &--fail {
+              width: 493px;
+              margin-right: auto;
+              margin-left: auto;
+          }
 
 }
 

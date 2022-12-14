@@ -1,63 +1,70 @@
 import CocktailCard from './../CocktailCard';
-const paginationContainer = document.querySelector('.pagination__container');
-const mainTitle = document.querySelector('.section__title--success');
-const paginationResult = document.querySelector('.fail-result');
-const buttonList = document.querySelector('.pagination__buttons');
-const cardList = document.querySelector('.pagination__cards');
-const nextButton = document.querySelector('#next-button');
-const prevButton = document.querySelector('#prev-button');
 
 export default class Pagination {
-  constructor(arrayOfItems, itemsPerPage) {
+  constructor(section, arrayOfItems, itemsPerPage) {
     this.arrayOfItems = arrayOfItems;
     this.itemsPerPage = itemsPerPage;
     this.numberOfPages = Math.ceil(
       this.arrayOfItems.length / this.itemsPerPage
     );
     this.currentPage = 0;
+    this.section = section;
+    this.refs = {};
+    this.#init();
   }
 
-  init() {
+  #init() {
+    this.refs.paginationContainer = this.section.querySelector(
+      '.pagination__container'
+    );
+    this.refs.mainTitle = this.section.querySelector(
+      '.section__title--success'
+    );
+    this.refs.paginationResult = this.section.querySelector('.fail-result');
+    this.refs.buttonList = this.section.querySelector('.pagination__buttons');
+    this.refs.cardList = this.section.querySelector('.pagination__cards');
+    this.refs.prevButton = this.section.querySelector('#prev-button');
+    this.refs.nextButton = this.section.querySelector('#next-button');
     if (this.arrayOfItems.length === 0) {
-      cardList.innerHTML = '';
-      paginationContainer.classList.add('hidden');
-      mainTitle.classList.add('hidden');
-      paginationResult.classList.remove('hidden');
+      this.refs.cardList.innerHTML = '';
+      this.refs.paginationContainer.classList.add('hidden');
+      this.refs.mainTitle.classList.add('hidden');
+      this.refs.paginationResult.classList.remove('hidden');
       return;
     }
     if (this.arrayOfItems.length <= this.itemsPerPage) {
-      paginationContainer.classList.add('hidden');
-      mainTitle.textContent = 'Searching results';
-      mainTitle.classList.remove('hidden');
-      paginationResult.classList.add('hidden');
+      this.refs.paginationContainer.classList.add('hidden');
+      this.refs.mainTitle.textContent = 'Searching results';
+      this.refs.mainTitle.classList.remove('hidden');
+      this.refs.paginationResult.classList.add('hidden');
       return this.#createMarkUp();
     }
-    paginationResult.classList.add('hidden');
-    mainTitle.textContent = 'Searching results';
-    paginationContainer.classList.remove('hidden');
+    this.refs.paginationResult.classList.add('hidden');
+    this.refs.mainTitle.textContent = 'Searching results';
+    this.refs.paginationContainer.classList.remove('hidden');
     this.#createMarkUp();
     this.#showCurrentPage(1);
     this.#rebuildButtonList(this.currentPage, this.numberOfPages);
-    buttonList.addEventListener('click', event => {
+    this.refs.buttonList.addEventListener('click', event => {
       if (event.target.classList.contains('pagination__number')) {
         this.currentPage = Number(event.target.getAttribute('page-index'));
         this.#showCurrentPage(this.currentPage);
         this.#rebuildButtonList(this.currentPage, this.numberOfPages);
       }
     });
-    prevButton.addEventListener('click', () => {
+    this.refs.prevButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage - 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
-    nextButton.addEventListener('click', () => {
+    this.refs.nextButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage + 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
   }
 
   #createMarkUp() {
-    cardList.innerHTML = '';
-    cardList.append(
+    this.refs.cardList.innerHTML = '';
+    this.refs.cardList.append(
       ...this.arrayOfItems.map(item => {
         return new CocktailCard(item).render();
       })
@@ -68,7 +75,7 @@ export default class Pagination {
     this.#arrowButtonsStatus();
     const prevRange = (numberOfPage - 1) * this.itemsPerPage;
     const currentRange = numberOfPage * this.itemsPerPage;
-    const itemsList = document.querySelectorAll('.cocktail-card');
+    const itemsList = this.section.querySelectorAll('.cocktail-card');
     itemsList.forEach((item, index) => {
       item.classList.add('hidden');
       if (index >= prevRange && index < currentRange) {
@@ -117,7 +124,7 @@ export default class Pagination {
         buttons += this.#createButton(numberOfPages);
       }
     }
-    buttonList.innerHTML = buttons;
+    this.refs.buttonList.innerHTML = buttons;
   }
   #disableButton(button) {
     button.classList.add('disabled');
@@ -129,14 +136,14 @@ export default class Pagination {
   }
   #arrowButtonsStatus() {
     if (this.currentPage === 1) {
-      this.#disableButton(prevButton);
+      this.#disableButton(this.refs.prevButton);
     } else {
-      this.#enableButton(prevButton);
+      this.#enableButton(this.refs.prevButton);
     }
     if (this.numberOfPages === this.currentPage) {
-      this.#disableButton(nextButton);
+      this.#disableButton(this.refs.nextButton);
     } else {
-      this.#enableButton(nextButton);
+      this.#enableButton(this.refs.nextButton);
     }
   }
 }
