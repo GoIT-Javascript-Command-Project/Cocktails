@@ -2,7 +2,12 @@
     display: flex;
     justify-content: center;
     @include breakpoint(false, tablet) {
-        width: 308px;
-        height: 280px;
+        width: 280px;
+        height: 308px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+        margin-top: -35px;
     }
+    
 }

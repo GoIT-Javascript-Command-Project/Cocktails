@@ -94,7 +94,7 @@ class PageController {
     if (window.matchMedia('(max-width: 767px)').matches) {
       count = 3;
     } else if (
-      window.matchMedia('(min-width: 768px) and (max-width: 1279px').matches
+      window.matchMedia('(min-width: 768px) and (max-width: 1279px)').matches
     ) {
       count = 6;
     } else if (window.matchMedia('(min-width: 1280px)').matches) {
