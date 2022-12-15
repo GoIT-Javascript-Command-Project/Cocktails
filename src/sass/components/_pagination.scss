@@ -1,4 +1,9 @@
 .pagination__container {
+    @include breakpoint(false, tablet) {
+        margin-top: 24px;
+    }
+    margin-top: 32px;
+    
     display: flex;
     justify-content: center;
 }

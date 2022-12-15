@@ -1,14 +1,14 @@
 import sectionTemplate from '../templates/section-template.hbs';
-import CocktailCard from './CocktailCard';
+import IngredientCard from './IngredientCard';
 
-export default class FavoriteCocktails {
+export default class FavoriteIngredients {
   #refs = null;
   #contentRef = null;
   #property = {
-    title: 'Favorite cocktails',
+    title: 'Favorite ingredients',
     classList: 'section',
     notFound:
-      "<p class='section__not-found'>You haven't added any favorite cocktails yet</p>",
+      "<p class='section__not-found'>You haven't added any favorite ingridients yet.</p>",
   };
 
   constructor() {
@@ -38,7 +38,7 @@ export default class FavoriteCocktails {
     this.#refs.list.innerHTML = '';
     this.#refs.list.append(
       ...data.map(cocktail => {
-        return new CocktailCard(cocktail, true).render();
+        return new IngredientCard(cocktail, true).render();
       })
     );
 
