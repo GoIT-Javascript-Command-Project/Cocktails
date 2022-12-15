@@ -1,8 +1,14 @@
 .not-found-img {
     display: flex;
     justify-content: center;
+    
+    
     @include breakpoint(false, tablet) {
         width: 308px;
         height: 280px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 80px;
     }
+    
 }
