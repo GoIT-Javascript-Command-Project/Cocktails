@@ -4,7 +4,7 @@ const refs = {
   menu: document.querySelector('[data-menu]'),
 };
 
-function hideMenu() {
+export function hideMenu() {
   refs.menu.classList.add('is-hidden');
   document.body.classList.remove('scroll-lock');
 }

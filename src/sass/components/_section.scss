@@ -1,10 +1,7 @@
 .section {
-
-   
-    padding-bottom: 60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
-
-
 
 .section__title {
   margin-bottom: 60px;
@@ -24,12 +21,11 @@
   @include breakpoint(desktop) {
     @include setFont(48, 72);
   }
-    &--fail {
-              width: 493px;
-              margin-right: auto;
-              margin-left: auto;
-          }
-
+  &--fail {
+    width: 493px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .section__not-found {
