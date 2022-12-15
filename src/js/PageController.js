@@ -1,6 +1,7 @@
 import throttle from 'lodash.throttle';
 import LocalStorage from './services/localStorage';
 import CocktailsAPI from './services/cocktailsAPI';
+import { hideMenu } from './mobile-menu';
 
 export const pages = {
   HOME: 'home',
@@ -126,7 +127,11 @@ class PageController {
   };
 
   #searchHandler = evt => {
-    evt.preventDefault();
+    evt?.preventDefault();
+
+    // Закриття мобільного меню
+    hideMenu();
+
     const query = evt.target.elements.query.value.trim().toLowerCase();
 
     switch (this.#currentPage.name) {
@@ -171,19 +176,34 @@ class PageController {
   };
 
   #favoriteCocktailsPageHandler = evt => {
-    evt.preventDefault();
+    evt?.preventDefault();
 
     this.goTo(pages.FAVORITE_COCKTAILS, LocalStorage.getFavoriteCocktails());
   };
 
   #favoriteIngredientsPageHandler = evt => {
-    evt.preventDefault();
+    evt?.preventDefault();
 
     this.goTo(
       pages.FAVORITE_INGREDIENTS,
       LocalStorage.getFavoriteIngredients()
     );
   };
+
+  #updateRender() {
+    switch (this.#currentPage?.name) {
+      case pages.FAVORITE_COCKTAILS:
+        {
+          this.#favoriteCocktailsPageHandler();
+        }
+        break;
+      case pages.FAVORITE_INGREDIENTS:
+        {
+          this.#favoriteIngredientsPageHandler();
+        }
+        break;
+    }
+  }
 
   addPage(name, page) {
     const findPage = this.#pages.find(page => page.name === name);
@@ -203,7 +223,11 @@ class PageController {
 
   goTo(pageName, data = []) {
     const page = this.#pages.find(p => p.name === pageName);
-    const content = page?.instance.render(data, this.#itemsPerPage);
+    const content = page?.instance.render(
+      data,
+      this.#itemsPerPage,
+      this.#updateRender.bind(this)
+    );
 
     if (!content) return;
 

@@ -11,13 +11,14 @@ export default class IngredientCard {
   #refs = null;
   #isRemovable = false;
 
-  constructor(data, isRemovable = false) {
+  constructor(data, isRemovable = false, callback = null) {
     this.#data = {
       ...data,
       isFavorite: LocalStorage.hasFavoriteIngredient(data.id),
       svg: `${svg}#heart-icon`,
     };
     this.#isRemovable = isRemovable;
+    this.callback = callback;
     this.#createMarkup(this.#data);
     this.#addListeners();
   }
@@ -77,6 +78,9 @@ export default class IngredientCard {
 
     favoriteBtn.dataset.favorite = value;
     this.#data.isFavorite = value;
+
+    // Виклик функціі оновлення
+    if (this.callback) this.callback();
   }
 
   #addListeners() {
