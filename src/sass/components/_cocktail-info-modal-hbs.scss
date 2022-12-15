@@ -1,11 +1,3 @@
-// .modal-container {
-//     @include breakpoint(tablet) {
-//         padding: 10px;
-//         width: 822px;
-//         outline: 2px solid tomato;
-//     }
-// }
-
 .details {
   width: 100%;
   height: 100%;
@@ -106,12 +98,14 @@
 
   @include breakpoint(tablet) {
     display: block;
-    margin-bottom: 40px;
-    max-height: 112px;
-    overflow-y: auto;
-    margin-right: 90px;
 
     width: 615px;
+    max-height: 112px;
+    margin-bottom: 40px;
+    margin-right: 90px;
+    padding-right: 8px;
+
+    overflow-y: auto;
     @include setFont(16, 28);
     color: var(--modal-text-color);
 
