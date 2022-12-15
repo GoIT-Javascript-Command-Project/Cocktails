@@ -10,10 +10,40 @@ export default class Pagination {
     this.currentPage = 0;
     this.section = section;
     this.refs = {};
-    this.#init();
+    // this.#init();
   }
+  initToFavorite() {
+    this.refs.paginationContainer = this.section.querySelector(
+      '.pagination__container'
+    );
+    this.refs.buttonList = this.section.querySelector('.pagination__buttons');
+    this.refs.prevButton = this.section.querySelector('#prev-button');
+    this.refs.nextButton = this.section.querySelector('#next-button');
+    if (this.arrayOfItems.length <= this.itemsPerPage) {
+      this.refs.paginationContainer.classList.add('hidden');
+    } else {
+      this.refs.paginationContainer.classList.remove('hidden');
+    }
 
-  #init() {
+    this.#showCurrentPage(1);
+    this.#rebuildButtonList(this.currentPage, this.numberOfPages);
+    this.refs.buttonList.addEventListener('click', event => {
+      if (event.target.classList.contains('pagination__number')) {
+        this.currentPage = Number(event.target.getAttribute('page-index'));
+        this.#showCurrentPage(this.currentPage);
+        this.#rebuildButtonList(this.currentPage, this.numberOfPages);
+      }
+    });
+    this.refs.prevButton.addEventListener('click', () => {
+      this.#showCurrentPage(this.currentPage - 1);
+      this.#rebuildButtonList(this.currentPage, this.numberOfPages);
+    });
+    this.refs.nextButton.addEventListener('click', () => {
+      this.#showCurrentPage(this.currentPage + 1);
+      this.#rebuildButtonList(this.currentPage, this.numberOfPages);
+    });
+  }
+  init() {
     this.refs.paginationContainer = this.section.querySelector(
       '.pagination__container'
     );
@@ -75,7 +105,7 @@ export default class Pagination {
     this.#arrowButtonsStatus();
     const prevRange = (numberOfPage - 1) * this.itemsPerPage;
     const currentRange = numberOfPage * this.itemsPerPage;
-    const itemsList = this.section.querySelectorAll('.cocktail-card');
+    const itemsList = this.section.querySelectorAll('li');
     itemsList.forEach((item, index) => {
       item.classList.add('hidden');
       if (index >= prevRange && index < currentRange) {

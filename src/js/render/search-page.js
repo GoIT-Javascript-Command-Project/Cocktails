@@ -11,6 +11,7 @@ export default class RenderSearchPage {
     });
     section.innerHTML = markUp;
     const pagination = new Pagination(section, data, 9);
+    pagination.init();
     return section;
   }
 }
