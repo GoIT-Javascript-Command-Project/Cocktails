@@ -1,14 +1,18 @@
-import CocktailsAPI from './js/services/CocktailsAPI';
-import CocktailCard from './js/CocktailCard';
+import RenderMainPage from './js/render/main-page';
+import RenderSearchPage from './js/render/search-page';
+import PageController, { pages } from './js/PageController';
+import FavoriteCocktails from './js/FavoriteCocktais';
+import { mobileMenuInit } from './js/mobile-menu';
+import { themeInit } from './js/themeSwitcher';
+import FavoriteIngredients from './js/FavoriteIngredients';
+import { heroInit } from './js/hero/hero';
 
-CocktailsAPI.getRandomCocktails(9).then(data => {
-  const ul = document.querySelector('.test');
-  ul.innerHTML = '';
+heroInit();
+mobileMenuInit();
+themeInit();
 
-  ul.append(
-    ...data.map(item => {
-      return new CocktailCard(item).render();
-    })
-  );
-});
-ё;
+PageController.addPage(pages.HOME, new RenderMainPage());
+PageController.addPage(pages.SEARCH, new RenderSearchPage());
+PageController.addPage(pages.FAVORITE_COCKTAILS, new FavoriteCocktails());
+PageController.addPage(pages.FAVORITE_INGREDIENTS, new FavoriteIngredients());
+PageController.gotoHomePage();

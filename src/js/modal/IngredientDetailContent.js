@@ -3,14 +3,17 @@ import ingredientContent from '../../templates/ingredient-info-modal.hbs';
 import LocalStorage from '../services/localStorage';
 
 export default class IngredientDetailContent extends ModalContent {
-  constructor(data) {
-    super({
-      ...data,
-      isFavorite: LocalStorage.hasFavoriteIngredient(data.id),
-      description:
-        data.description &&
-        data.description.replace(/^([\w\-]+)/, `<span>$1</span>`),
-    });
+  constructor(data, cb = null) {
+    super(
+      {
+        ...data,
+        isFavorite: LocalStorage.hasFavoriteIngredient(data.id),
+        description:
+          data.description &&
+          data.description.replace(/^([\w\-]+)/, `<span>$1</span>`),
+      },
+      cb
+    );
   }
 
   init() {
@@ -38,6 +41,7 @@ export default class IngredientDetailContent extends ModalContent {
       evt.target.textContent = 'Remote from favorite';
     }
     this.data.isFavorite = !isFavorite;
+    if (this.callback) this.callback(this.data.isFavorite);
   }
 
   _addEventListener() {

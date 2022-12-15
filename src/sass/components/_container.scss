@@ -1,23 +1,22 @@
-
 .container {
     --padding: 20px;
 
     max-width: getBreakpoint(mobile);
     padding-left: var(--padding);
     padding-right: var(--padding);
-    
-@include breakpoint(mobile) {
-    margin: 0 auto;
-}
 
-@include breakpoint(tablet) {
-    --padding: 32px;
-     max-width: getBreakpoint(tablet);
-}
+    @include breakpoint(mobile) {
+        margin: 0 auto;
+    }
 
-@include breakpoint(desktop) {
---padding: 15px;
- max-width: getBreakpoint(desktop);
-}
+    @include breakpoint(tablet) {
+        --padding: 32px;
+        max-width: getBreakpoint(tablet);
+    }
+
+    @include breakpoint(desktop) {
+        --padding: 15px;
+        max-width: getBreakpoint(desktop);
+    }
 
 }

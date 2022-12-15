@@ -18,6 +18,8 @@
   }
 
   &--primary {
+    min-width: 110px;
+
     color: var(--white-color);
     background-color: var(--primary-button-color);
 
@@ -31,16 +33,16 @@
     }
 
     @include breakpoint(tablet) {
-      padding: 12px 27px;
+      padding: 12px 18px;
     }
 
     @include breakpoint(desktop) {
-      padding: 12px 38px;
+      padding: 12px 30px;
     }
   }
 
   &--secondary {
-    min-width: 140px;
+    min-width: 110px;
 
     color: var(--accent-color);
     background-color: transparent;
@@ -71,6 +73,8 @@
 }
 
 .button__icon {
+  margin-left: 5px;
+
   color: var(--heart-color);
 
   @include setTransition(color);

@@ -1,11 +1,11 @@
-import createCocktailCard from '../templates/cocktail-card.hbs';
+import createIngredientCard from '../templates/ingredient-card.hbs';
 import CocktailsAPI from './services/cocktailsAPI';
 import Modal from './modal/Modal';
-import CocktailDetailsContent from './modal/CocktailDetailsContent';
+import IngredientDetailContent from './modal/IngredientDetailContent';
 import LocalStorage from './services/localStorage';
 import svg from '../images/icons.svg';
 
-export default class CocktailCard {
+export default class IngredientCard {
   #data = null;
   #contentRef = null;
   #refs = null;
@@ -14,7 +14,7 @@ export default class CocktailCard {
   constructor(data, isRemovable = false) {
     this.#data = {
       ...data,
-      isFavorite: LocalStorage.hasFavoriteCocktail(data.id),
+      isFavorite: LocalStorage.hasFavoriteIngredient(data.id),
       svg: `${svg}#heart-icon`,
     };
     this.#isRemovable = isRemovable;
@@ -28,7 +28,7 @@ export default class CocktailCard {
 
   #createMarkup(data) {
     const container = document.createElement('div');
-    container.innerHTML = createCocktailCard(data).trim();
+    container.innerHTML = createIngredientCard(data).trim();
     this.#contentRef = container.firstChild;
 
     this.#refs = {
@@ -43,9 +43,9 @@ export default class CocktailCard {
   #clickMoreHandler = evt => {
     evt.currentTarget.blur();
 
-    CocktailsAPI.getCocktailInfoById(this.#data.id).then(data => {
+    CocktailsAPI.getIngredientInfo(this.#data.name).then(data => {
       Modal.show(
-        new CocktailDetailsContent(
+        new IngredientDetailContent(
           data,
           this.#setFavorite.bind(this)
         ).getContentRef()
@@ -57,9 +57,9 @@ export default class CocktailCard {
     const { isFavorite, svg, ...data } = this.#data;
 
     if (value) {
-      LocalStorage.setFavoriteCocktails(data);
+      LocalStorage.setFavoriteIngredients(data);
     } else {
-      LocalStorage.removeFavoriteCocktail(data.id);
+      LocalStorage.removeFavoriteIngredient(data.id);
     }
 
     this.#setFavorite(value);

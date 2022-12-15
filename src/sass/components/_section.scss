@@ -1,9 +1,67 @@
-
 .section {
+
+   
     padding-bottom: 60px;
 }
 
+
+
 .section__title {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
+
+  text-align: center;
+  font-weight: 600;
+  @include setFont(22, 42);
+  color: var(--primary-text-color);
+
+  @include setTransition(color);
+
+  @include breakpoint(tablet) {
+    font-weight: 700;
+    @include setFont(32, 42);
+  }
+
+  @include breakpoint(desktop) {
+    @include setFont(48, 72);
+  }
+    &--fail {
+              width: 493px;
+              margin-right: auto;
+              margin-left: auto;
+          }
+
 }
 
+.section__not-found {
+  text-align: center;
+
+  @include setFont(20, 60);
+  color: var(--primary-text-color);
+
+  @include setTransition(color);
+
+  @include breakpoint(tablet) {
+    @include setFont(24, 60);
+  }
+
+  @include breakpoint(desktop) {
+    @include setFont(32, 72);
+  }
+}
+
+.section .list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include breakpoint(tablet) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+}
+
+.section .not-found {
+  &--hidden {
+    @include visibilityHidden();
+  }
+}
