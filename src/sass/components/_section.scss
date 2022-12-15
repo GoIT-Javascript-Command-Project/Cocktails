@@ -12,20 +12,32 @@
   color: var(--primary-text-color);
 
   @include setTransition(color);
+  &--fail {
+      width: 280px;
+      margin-right: auto;
+      margin-left: auto;
+    }
 
   @include breakpoint(tablet) {
     font-weight: 700;
     @include setFont(32, 42);
+    &--fail {
+        width: 493px;
+        margin-right: auto;
+        margin-left: auto;
+      }
   }
 
   @include breakpoint(desktop) {
     @include setFont(48, 72);
   }
+
   &--fail {
     width: 493px;
     margin-right: auto;
     margin-left: auto;
   }
+
 }
 
 .section__not-found {

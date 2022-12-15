@@ -1,6 +1,6 @@
 .pagination__container {
   @include breakpoint(false, tablet) {
-    margin-top: 24px;
+    margin-top: 40px;
   }
   margin-top: 32px;
 
@@ -8,10 +8,14 @@
   justify-content: center;
 }
 .pagination__arrow {
+  
   color: var(--primary-text-color);
   background-color: var(--background-color);
   &--prev {
+    
     transform: rotate(180deg);
+    
+    
   }
   &.disabled {
     cursor: not-allowed;
@@ -26,12 +30,14 @@
   @include breakpoint(false, tablet) {
     font-size: 12px;
     margin-right: 8px;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
+   
     &:first-child {
       margin-left: 8px;
     }
   }
+
   font-size: 16px;
   background-color: var(--background-color);
   color: var(--pagination-number-color);
@@ -41,9 +47,11 @@
   border-radius: 50%;
   border: 1px solid var(--primary-button-color);
   @include setTransition(color, background-color);
+  @include breakpoint (tablet) {
   &:first-child {
     margin-left: 12px;
   }
+}
 
   &.active {
     color: var(--background-color);
@@ -56,8 +64,12 @@
   }
 }
 .pagination__dots {
+  font-size: 12px;
   color: var(--primary-button-color);
   margin-right: 12px;
+  @include breakpoint (false, tablet) {
+    margin-right: 8px;
+  }
 }
 .hidden {
   display: none;
