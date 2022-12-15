@@ -13,80 +13,80 @@ export default class Pagination {
     // this.#init();
   }
   initToFavorite() {
-    this.refs.paginationContainer = this.section.querySelector(
+    const { refs } = this;
+    refs.paginationContainer = this.section.querySelector(
       '.pagination__container'
     );
-    this.refs.buttonList = this.section.querySelector('.pagination__buttons');
-    this.refs.prevButton = this.section.querySelector('#prev-button');
-    this.refs.nextButton = this.section.querySelector('#next-button');
+    refs.buttonList = this.section.querySelector('.pagination__buttons');
+    refs.prevButton = this.section.querySelector('#prev-button');
+    refs.nextButton = this.section.querySelector('#next-button');
     if (this.arrayOfItems.length <= this.itemsPerPage) {
-      this.refs.paginationContainer.classList.add('hidden');
+      refs.paginationContainer.classList.add('hidden');
     } else {
-      this.refs.paginationContainer.classList.remove('hidden');
+      refs.paginationContainer.classList.remove('hidden');
     }
 
     this.#showCurrentPage(1);
     this.#rebuildButtonList(this.currentPage, this.numberOfPages);
-    this.refs.buttonList.addEventListener('click', event => {
+    refs.buttonList.addEventListener('click', event => {
       if (event.target.classList.contains('pagination__number')) {
         this.currentPage = Number(event.target.getAttribute('page-index'));
         this.#showCurrentPage(this.currentPage);
         this.#rebuildButtonList(this.currentPage, this.numberOfPages);
       }
     });
-    this.refs.prevButton.addEventListener('click', () => {
+    refs.prevButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage - 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
-    this.refs.nextButton.addEventListener('click', () => {
+    refs.nextButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage + 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
   }
   init() {
-    this.refs.paginationContainer = this.section.querySelector(
+    const { refs } = this;
+    refs.paginationContainer = this.section.querySelector(
       '.pagination__container'
     );
-    this.refs.mainTitle = this.section.querySelector(
-      '.section__title--success'
-    );
-    this.refs.paginationResult = this.section.querySelector('.fail-result');
-    this.refs.buttonList = this.section.querySelector('.pagination__buttons');
-    this.refs.cardList = this.section.querySelector('.pagination__cards');
-    this.refs.prevButton = this.section.querySelector('#prev-button');
-    this.refs.nextButton = this.section.querySelector('#next-button');
+    refs.mainTitle = this.section.querySelector('.section__title--success');
+    refs.paginationResult = this.section.querySelector('.fail-result');
+    refs.buttonList = this.section.querySelector('.pagination__buttons');
+    refs.cardList = this.section.querySelector('.pagination__cards');
+    refs.prevButton = this.section.querySelector('#prev-button');
+    refs.nextButton = this.section.querySelector('#next-button');
     if (this.arrayOfItems.length === 0) {
-      this.refs.cardList.innerHTML = '';
-      this.refs.paginationContainer.classList.add('hidden');
-      this.refs.mainTitle.classList.add('hidden');
-      this.refs.paginationResult.classList.remove('hidden');
+      refs.cardList.innerHTML = '';
+      refs.paginationContainer.classList.add('hidden');
+      refs.mainTitle.classList.add('hidden');
+      refs.paginationResult.classList.remove('hidden');
       return;
     }
     if (this.arrayOfItems.length <= this.itemsPerPage) {
-      this.refs.paginationContainer.classList.add('hidden');
-      this.refs.mainTitle.textContent = 'Searching results';
-      this.refs.mainTitle.classList.remove('hidden');
-      this.refs.paginationResult.classList.add('hidden');
+      refs.paginationContainer.classList.add('hidden');
+      refs.mainTitle.textContent = 'Searching results';
+      refs.mainTitle.classList.remove('hidden');
+      refs.paginationResult.classList.add('hidden');
       return this.#createMarkUp();
     }
-    this.refs.paginationResult.classList.add('hidden');
-    this.refs.mainTitle.textContent = 'Searching results';
-    this.refs.paginationContainer.classList.remove('hidden');
+    refs.paginationResult.classList.add('hidden');
+    refs.mainTitle.textContent = 'Searching results';
+    refs.paginationContainer.classList.remove('hidden');
     this.#createMarkUp();
     this.#showCurrentPage(1);
     this.#rebuildButtonList(this.currentPage, this.numberOfPages);
-    this.refs.buttonList.addEventListener('click', event => {
+    refs.buttonList.addEventListener('click', event => {
       if (event.target.classList.contains('pagination__number')) {
         this.currentPage = Number(event.target.getAttribute('page-index'));
         this.#showCurrentPage(this.currentPage);
         this.#rebuildButtonList(this.currentPage, this.numberOfPages);
       }
     });
-    this.refs.prevButton.addEventListener('click', () => {
+    refs.prevButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage - 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
-    this.refs.nextButton.addEventListener('click', () => {
+    refs.nextButton.addEventListener('click', () => {
       this.#showCurrentPage(this.currentPage + 1);
       this.#rebuildButtonList(this.currentPage, this.numberOfPages);
     });
@@ -132,21 +132,26 @@ export default class Pagination {
       if (currentPage > 3) {
         buttons += `<span class="pagination__dots">...</span>`;
       }
+
       if (currentPage === numberOfPages) {
         buttons += this.#createButton(currentPage - 2);
       }
       if (currentPage > 2) {
         buttons += this.#createButton(currentPage - 1);
       }
+
       if (currentPage !== 1 && currentPage !== numberOfPages) {
         buttons += this.#createButton(currentPage);
       }
+
       if (currentPage < numberOfPages - 1) {
         buttons += this.#createButton(currentPage + 1);
       }
+
       if (currentPage === 1) {
         buttons += this.#createButton(currentPage + 2);
       }
+
       if (currentPage < numberOfPages - 2) {
         buttons += `<span class="pagination__dots">...</span>`;
       }
