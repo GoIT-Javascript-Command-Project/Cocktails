@@ -1,5 +1,7 @@
 import sectionTemplate from '../templates/section-template.hbs';
 import IngredientCard from './IngredientCard';
+import Pagination from './pagination/pagination';
+import svg from '../images/icons.svg';
 
 export default class FavoriteIngredients {
   #refs = null;
@@ -7,6 +9,7 @@ export default class FavoriteIngredients {
   #property = {
     title: 'Favorite ingredients',
     classList: 'section',
+    arrowSvg: `${svg}#pagination-arrow-icon`,
     notFound:
       "<p class='section__not-found'>You haven't added any favorite ingridients yet.</p>",
   };
@@ -26,7 +29,7 @@ export default class FavoriteIngredients {
     };
   }
 
-  render(data = []) {
+  render(data = [], itemsPerPage = 9) {
     // Відображення повідомлення про відсутність єлементів
     if (data.length) {
       this.#refs.notFound.classList.add('not-found--hidden');
@@ -41,6 +44,8 @@ export default class FavoriteIngredients {
         return new IngredientCard(cocktail, true).render();
       })
     );
+    const pagination = new Pagination(this.#contentRef, data, itemsPerPage);
+    pagination.initToFavorite();
 
     return this.#contentRef;
   }

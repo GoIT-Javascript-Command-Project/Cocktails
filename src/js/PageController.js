@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 import LocalStorage from './services/localStorage';
 import CocktailsAPI from './services/cocktailsAPI';
 
@@ -12,6 +13,7 @@ class PageController {
   #refs = null;
   #currentPage = null;
   #pages = [];
+  #itemsPerPage = 0;
 
   constructor() {
     this.#init();
@@ -46,6 +48,7 @@ class PageController {
     };
 
     this.#addListeners();
+    this.#getPageSize();
   }
 
   #addListeners() {
@@ -58,6 +61,8 @@ class PageController {
       favoriteIngredients,
       hero,
     } = this.#refs;
+
+    window.addEventListener('resize', this.#windowResizeHandler);
 
     form.forEach(f => {
       f.addEventListener('submit', this.#searchHandler);
@@ -76,6 +81,36 @@ class PageController {
     });
     hero.letterList.addEventListener('click', this.#clickLetterHandler);
     hero.mobileSelect.addEventListener('click', this.#clickLetterHandler);
+  }
+
+  #windowResizeHandler = throttle(() => {
+    this.#getPageSize();
+  }, 500);
+
+  #getPageSize() {
+    let count = 0;
+
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      count = 3;
+    } else if (
+      window.matchMedia('(min-width: 768px) and (max-width: 1279px').matches
+    ) {
+      count = 6;
+    } else if (window.matchMedia('(min-width: 1280px)').matches) {
+      count = 9;
+    }
+
+    if (this.#itemsPerPage === count) return;
+
+    this.#itemsPerPage = count;
+
+    if (this.#currentPage) {
+      if (this.#currentPage.name === pages.HOME) {
+        this.gotoHomePage();
+      } else {
+        this.goTo(this.#currentPage.name, this.#currentPage.data);
+      }
+    }
   }
 
   #clickLetterHandler = evt => {
@@ -161,14 +196,14 @@ class PageController {
   }
 
   gotoHomePage() {
-    CocktailsAPI.getRandomCocktails(9).then(data => {
+    CocktailsAPI.getRandomCocktails(this.#itemsPerPage).then(data => {
       this.goTo(pages.HOME, data);
     });
   }
 
   goTo(pageName, data = []) {
     const page = this.#pages.find(p => p.name === pageName);
-    const content = page?.instance.render(data);
+    const content = page?.instance.render(data, this.#itemsPerPage);
 
     if (!content) return;
 
@@ -186,7 +221,7 @@ class PageController {
 
     // Додавання нової сторінку до документу
     this.#refs.main.append(content);
-    this.#currentPage = { name: pageName, ref: content };
+    this.#currentPage = { name: pageName, ref: content, data: data };
   }
 }
 
