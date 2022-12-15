@@ -10,7 +10,6 @@ export default class Pagination {
     this.currentPage = 0;
     this.section = section;
     this.refs = {};
-    // this.#init();
   }
   initToFavorite() {
     const { refs } = this;

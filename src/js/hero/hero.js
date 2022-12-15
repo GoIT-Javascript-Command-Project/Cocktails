@@ -89,8 +89,10 @@ function createButtonsMarkup() {
     })
     .join('');
 }
+
+let isOpen = false;
 // Функция создания вслывающего списка
-function onMobLetterClick() {
+function onMobLetterClick(evt) {
   mobOpen.classList.add('mob-open');
   if (selectLetter.children.length > 1) {
     mobOpen.classList.remove('mob-open');
@@ -102,7 +104,20 @@ function onMobLetterClick() {
   selectLetter.lastChild.addEventListener('click', e => {
     checked.classList.add('select__input-checked');
     inputSpan.textContent = e.target.dataset.letter.toUpperCase();
-    selectLetter.lastChild.remove();
-    mobOpen.classList.remove('mob-open');
+    closeDropdownMenu();
   });
+
+  evt.stopPropagation();
+  if (!isOpen) {
+    isOpen = true;
+    document.body.addEventListener('click', closeDropdownMenu, { once: true });
+  }
+}
+
+function closeDropdownMenu() {
+  isOpen = false;
+  const el = document.querySelector('.select__dropdown');
+  el?.remove();
+  mobOpen.classList.remove('mob-open');
+  document.body.removeEventListener('click', closeDropdownMenu, { once: true });
 }

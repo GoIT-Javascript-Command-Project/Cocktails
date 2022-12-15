@@ -38,6 +38,7 @@ class Modal {
     }
     // Відображаемо модальне вікно та додаємо прослуховувачі закриття вікна
     if (modal.classList.contains('modal--hidden')) {
+      document.body.classList.add('scroll-lock');
       modal.classList.remove('modal--hidden');
       this.#addListeners();
     }
@@ -69,6 +70,7 @@ class Modal {
 
     // Перевірка на наявнісь відкритих вікон.
     if (!this.#modals.length) {
+      document.body.classList.remove('scroll-lock');
       this.#ref.classList.add('modal--hidden');
     }
   }
@@ -77,6 +79,7 @@ class Modal {
    * Закриває всі відкриті вікна.
    */
   closeAll() {
+    document.body.classList.remove('scroll-lock');
     this.#ref.classList.add('modal--hidden');
     this.#clearModal();
     this.#removeListeners();
