@@ -36,12 +36,14 @@ class PageController {
       favoriteIngredients: document.querySelectorAll(
         '[data-page="favorite-ingredients"]'
       ),
-      hero: document.querySelector('.hero'),
+      hero: {
+        container: document.querySelector('.hero'),
+        letterList: document.querySelector('.hero__list'),
+        mobileSelect: document.querySelector('.hero__select--mob'),
+      },
       main: document.querySelector('main'),
       form: document.querySelectorAll('.header form'),
     };
-
-    //console.log(this.#refs);
 
     this.#addListeners();
   }
@@ -54,6 +56,7 @@ class PageController {
       homeLinks,
       favoriteCocktails,
       favoriteIngredients,
+      hero,
     } = this.#refs;
 
     form.forEach(f => {
@@ -71,7 +74,21 @@ class PageController {
     favoriteIngredients.forEach(link => {
       link.addEventListener('click', this.#favoriteIngredientsPageHandler);
     });
+    hero.letterList.addEventListener('click', this.#clickLetterHandler);
+    hero.mobileSelect.addEventListener('click', this.#clickLetterHandler);
   }
+
+  #clickLetterHandler = evt => {
+    const { target } = evt;
+    target.blur();
+
+    if (target.nodeName !== 'BUTTON' && target.nodeName !== 'LI') return;
+
+    const letter = target.textContent.trim();
+    CocktailsAPI.getCocktailsByFirstLetter(letter).then(data => {
+      this.goTo(pages.SEARCH, data);
+    });
+  };
 
   #searchHandler = evt => {
     evt.preventDefault();
@@ -115,9 +132,7 @@ class PageController {
   #homePageHandler = evt => {
     evt.preventDefault();
 
-    CocktailsAPI.getRandomCocktails(9).then(data => {
-      this.goTo(pages.HOME, data);
-    });
+    this.gotoHomePage();
   };
 
   #favoriteCocktailsPageHandler = evt => {
@@ -145,6 +160,12 @@ class PageController {
     this.#pages.push({ name: name, instance: page });
   }
 
+  gotoHomePage() {
+    CocktailsAPI.getRandomCocktails(9).then(data => {
+      this.goTo(pages.HOME, data);
+    });
+  }
+
   goTo(pageName, data = []) {
     const page = this.#pages.find(p => p.name === pageName);
     const content = page?.instance.render(data);
@@ -154,6 +175,13 @@ class PageController {
     // Видалення попередньої сторінки
     if (this.#currentPage) {
       this.#currentPage.ref.remove();
+    }
+
+    // Відображення героя
+    if (pageName === pages.HOME || pageName === pages.SEARCH) {
+      this.#refs.hero.container.classList.remove('hero--hidden');
+    } else {
+      this.#refs.hero.container.classList.add('hero--hidden');
     }
 
     // Додавання нової сторінку до документу

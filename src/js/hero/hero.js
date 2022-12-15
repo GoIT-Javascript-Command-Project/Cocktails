@@ -48,8 +48,6 @@ const buttons = [
   '0',
 ];
 
-onLoadingHero();
-letterList.addEventListener('click', e => onClickSearchLetter(e));
 inputMobile.addEventListener('click', onMobLetterClick);
 
 //
@@ -58,28 +56,8 @@ let checked = document.querySelector('.select__input');
 let mobOpen = document.querySelector('.gallery__title');
 
 // Функция создания кнопок поиска для десктоп и таблет
-function onLoadingHero() {
+export function heroInit() {
   createSearchButtons(buttons);
-}
-
-async function onClickSearchLetter(e) {
-  if (e.target.nodeName === 'BUTTON') {
-    try {
-      const letter = e.target.textContent;
-      console.log(letter);
-      const response = await getCocktailsByFirstLetter(letter);
-    } catch (error) {}
-  }
-}
-
-async function onLetterClick(e) {
-  checked.classList.add('select__input-checked');
-  if (!e.target.dataset.letter) return;
-  try {
-    const letter = e.target.textContent;
-    console.log(letter);
-    const response = await getCocktailsByFirstLetter(letter);
-  } catch (error) {}
 }
 
 // Функция создания (разметка) кнопок поиска для десктоп и таблет
@@ -122,7 +100,7 @@ function onMobLetterClick() {
 
   createDroplist();
   selectLetter.lastChild.addEventListener('click', e => {
-    onLetterClick(e);
+    checked.classList.add('select__input-checked');
     inputSpan.textContent = e.target.dataset.letter.toUpperCase();
     selectLetter.lastChild.remove();
     mobOpen.classList.remove('mob-open');
