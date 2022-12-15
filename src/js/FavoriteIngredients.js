@@ -29,7 +29,7 @@ export default class FavoriteIngredients {
     };
   }
 
-  render(data = [], itemsPerPage = 9) {
+  render(data = [], itemsPerPage = 9, callback = null) {
     // Відображення повідомлення про відсутність єлементів
     if (data.length) {
       this.#refs.notFound.classList.add('not-found--hidden');
@@ -41,7 +41,7 @@ export default class FavoriteIngredients {
     this.#refs.list.innerHTML = '';
     this.#refs.list.append(
       ...data.map(cocktail => {
-        return new IngredientCard(cocktail, true).render();
+        return new IngredientCard(cocktail, true, callback).render();
       })
     );
     const pagination = new Pagination(this.#contentRef, data, itemsPerPage);
