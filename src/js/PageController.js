@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 import LocalStorage from './services/localStorage';
 import CocktailsAPI from './services/cocktailsAPI';
 
@@ -12,6 +13,7 @@ class PageController {
   #refs = null;
   #currentPage = null;
   #pages = [];
+  #itemsPerPage = 0;
 
   constructor() {
     this.#init();
@@ -36,14 +38,17 @@ class PageController {
       favoriteIngredients: document.querySelectorAll(
         '[data-page="favorite-ingredients"]'
       ),
-      hero: document.querySelector('.hero'),
+      hero: {
+        container: document.querySelector('.hero'),
+        letterList: document.querySelector('.hero__list'),
+        mobileSelect: document.querySelector('.hero__select--mob'),
+      },
       main: document.querySelector('main'),
       form: document.querySelectorAll('.header form'),
     };
 
-    //console.log(this.#refs);
-
     this.#addListeners();
+    this.#getPageSize();
   }
 
   #addListeners() {
@@ -54,7 +59,10 @@ class PageController {
       homeLinks,
       favoriteCocktails,
       favoriteIngredients,
+      hero,
     } = this.#refs;
+
+    window.addEventListener('resize', this.#windowResizeHandler);
 
     form.forEach(f => {
       f.addEventListener('submit', this.#searchHandler);
@@ -71,7 +79,51 @@ class PageController {
     favoriteIngredients.forEach(link => {
       link.addEventListener('click', this.#favoriteIngredientsPageHandler);
     });
+    hero.letterList.addEventListener('click', this.#clickLetterHandler);
+    hero.mobileSelect.addEventListener('click', this.#clickLetterHandler);
   }
+
+  #windowResizeHandler = throttle(() => {
+    this.#getPageSize();
+  }, 500);
+
+  #getPageSize() {
+    let count = 0;
+
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      count = 3;
+    } else if (
+      window.matchMedia('(min-width: 768px) and (max-width: 1279px').matches
+    ) {
+      count = 6;
+    } else if (window.matchMedia('(min-width: 1280px)').matches) {
+      count = 9;
+    }
+
+    if (this.#itemsPerPage === count) return;
+
+    this.#itemsPerPage = count;
+
+    if (this.#currentPage) {
+      if (this.#currentPage.name === pages.HOME) {
+        this.gotoHomePage();
+      } else {
+        this.goTo(this.#currentPage.name, this.#currentPage.data);
+      }
+    }
+  }
+
+  #clickLetterHandler = evt => {
+    const { target } = evt;
+    target.blur();
+
+    if (target.nodeName !== 'BUTTON' && target.nodeName !== 'LI') return;
+
+    const letter = target.textContent.trim();
+    CocktailsAPI.getCocktailsByFirstLetter(letter).then(data => {
+      this.goTo(pages.SEARCH, data);
+    });
+  };
 
   #searchHandler = evt => {
     evt.preventDefault();
@@ -115,9 +167,7 @@ class PageController {
   #homePageHandler = evt => {
     evt.preventDefault();
 
-    CocktailsAPI.getRandomCocktails(9).then(data => {
-      this.goTo(pages.HOME, data);
-    });
+    this.gotoHomePage();
   };
 
   #favoriteCocktailsPageHandler = evt => {
@@ -145,9 +195,15 @@ class PageController {
     this.#pages.push({ name: name, instance: page });
   }
 
+  gotoHomePage() {
+    CocktailsAPI.getRandomCocktails(this.#itemsPerPage).then(data => {
+      this.goTo(pages.HOME, data);
+    });
+  }
+
   goTo(pageName, data = []) {
     const page = this.#pages.find(p => p.name === pageName);
-    const content = page?.instance.render(data);
+    const content = page?.instance.render(data, this.#itemsPerPage);
 
     if (!content) return;
 
@@ -156,9 +212,16 @@ class PageController {
       this.#currentPage.ref.remove();
     }
 
+    // Відображення героя
+    if (pageName === pages.HOME || pageName === pages.SEARCH) {
+      this.#refs.hero.container.classList.remove('hero--hidden');
+    } else {
+      this.#refs.hero.container.classList.add('hero--hidden');
+    }
+
     // Додавання нової сторінку до документу
     this.#refs.main.append(content);
-    this.#currentPage = { name: pageName, ref: content };
+    this.#currentPage = { name: pageName, ref: content, data: data };
   }
 }
 
