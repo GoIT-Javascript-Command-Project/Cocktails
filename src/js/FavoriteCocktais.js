@@ -1,6 +1,6 @@
 import sectionTemplate from '../templates/section-template.hbs';
 import CocktailCard from './CocktailCard';
-
+import Pagination from './pagination/pagination';
 export default class FavoriteCocktails {
   #refs = null;
   #contentRef = null;
@@ -41,7 +41,8 @@ export default class FavoriteCocktails {
         return new CocktailCard(cocktail, true).render();
       })
     );
-
+    const pagination = new Pagination(this.#contentRef, data, 3);
+    pagination.initToFavorite();
     return this.#contentRef;
   }
 }
